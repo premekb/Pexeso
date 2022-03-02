@@ -1,8 +1,8 @@
-import Board from "./model/Board.js"
+import MainMenuPage from "./pages/MainMenuPage.js";
 
 export default class App{
     init(){
-        let tryit = new Board(10);
-        console.log("hello world");
+        const mainMenuPage = new MainMenuPage();
+        mainMenuPage.render();
     }
 }

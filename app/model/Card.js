@@ -1,18 +1,37 @@
 export default class Card{
+    #id;
+    #pairCardId;
     #content;
-    #pairCard;
     #removed = false;
 
-    constructor(content) {
+    constructor(id, content) {
+        this.#id = id;
         this.#content = content;
     }
 
-    set pairCard(value) {
-        this.#pairCard = value;
+    get id() {
+        return this.#id;
     }
 
-    get pairCard() {
-        return this.#pairCard;
+    set id(value) {
+        this.#id = value;
+    }
+
+
+    get pairCardId() {
+        return this.#pairCardId;
+    }
+
+    set pairCardId(value) {
+        this.#pairCardId = value;
+    }
+
+    get removed() {
+        return this.#removed;
+    }
+
+    set removed(value) {
+        this.#removed = value;
     }
 
     remove() {
