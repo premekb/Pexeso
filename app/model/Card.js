@@ -1,5 +1,6 @@
 export default class Card{
     #id;
+    // Id of the card that is in pair
     #pairCardId;
     #content;
     #removed = false;

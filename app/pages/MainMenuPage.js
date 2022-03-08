@@ -1,6 +1,7 @@
 import AbstractPage from "./AbstractPage.js";
 import GamePage from "./GamePage.js";
 import GameFactory from "../factory/GameFactory.js";
+import GameService from "../service/GameService.js";
 
 export default class MainMenuPage extends AbstractPage{
     render() {
@@ -11,7 +12,8 @@ export default class MainMenuPage extends AbstractPage{
         const startButton = document.createElement("button");
         startButton.innerText = "Start game";
         startButton.addEventListener("click",(e) => {
-            const gamePage = new GamePage(GameFactory.createGame(20));
+            const gameService = new GameService(GameFactory.createGame(20));
+            const gamePage = new GamePage(gameService);
             gamePage.render();
         })
 

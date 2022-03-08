@@ -20,9 +20,12 @@ export default class Board{
         this.#cards.push(card2);
     }
 
-    get shuffledCards() {
-        const shuffledCards = this.#cards;
-        shuffledCards.sort(() => Math.random() - 0.5)
-        return shuffledCards;
+
+    get cards() {
+        return this.#cards;
+    }
+
+    set cards(value) {
+        this.#cards = value;
     }
 }

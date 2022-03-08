@@ -1,19 +1,21 @@
 import AbstractPage from "./AbstractPage.js";
 
 export default class GamePage extends AbstractPage{
-    #game;
+    #gameService;
 
-    constructor(game) {
+    constructor(gameService) {
         super();
-        this.#game = game;
+        this.#gameService = gameService;
     }
 
     render() {
         super.render();
-        const cards = this.#game.board.shuffledCards;
+        const cards = this.#gameService.cards;
 
         for (let card of cards) {
-            this.#renderCard(card);
+            if (!card.removed){
+                this.#renderCard(card);
+            }
         }
     }
 
@@ -23,7 +25,7 @@ export default class GamePage extends AbstractPage{
         cardDiv.dataset.id = card.id;
         cardDiv.dataset.pairId = card.pairCardId;
         cardDiv.dataset.removed = card.removed;
-        cardDiv.innerText = card.id;
+        cardDiv.innerText = card.id + " " + card.pairCardId;
 
         cardDiv.addEventListener("click", this.#cardClick.bind(this));
 
@@ -31,7 +33,9 @@ export default class GamePage extends AbstractPage{
     }
 
     #cardClick(e){
-        console.log(this);
-        console.log(e);
+        const clickedCardId = parseInt(e.target.dataset.id);
+        const clickedPairId = parseInt(e.target.dataset.pairId);
+        this.#gameService.selectCard(clickedCardId, clickedPairId);
+        this.render();
     }
 }
