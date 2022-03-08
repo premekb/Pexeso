@@ -14,52 +14,54 @@ export default class GameService{
         return this.#boardService.cards;
     }
 
-    get selectedPairId() {
-        return this.#game.selectedPairId;
-    }
-
-    get selectedCardId() {
-        return this.#game.selectedCardId;
-    }
-
-    selectCard(cardId, pairId){
+    selectCard(card){
         if (this.isCardSelected()){
-            if (this.#game.selectedCardId === cardId){
+            if (this.#game.selectedCard.id === card.id){
                 console.log("Card unselected.");
             }
 
-            else if (this.#game.selectedPairId === cardId) {
-                console.log("PairId: ", pairId, " found!");
-                this.#removePair(cardId, this.#game.selectedCardId);
+            else if (this.#game.selectedCard.pairCardId === card.id) {
+                console.log("PairId: ", card.pairCardId, " found!");
+                this.#removePair(card, this.#game.selectedCard);
             }
 
             else {
-                console.log("Selected unmatching cards! First pairId: ", this.#game.selectedPairId, " Second pairId: ", pairId);
+                console.log("Selected unmatching cards! First pairId: ", this.#game.selectedCard.pairCardId, " Second pairId: ", card.pairCardId);
             }
 
-            this.#setSelectedCard(null, null);
+            this.#setSelectedCard(null);
         }
 
         else{
-            console.log("CardId: ", cardId, ", PairId: ", pairId, " selected.");
-            this.#setSelectedCard(cardId, pairId);
+            console.log("CardId: ", card.id, ", PairId: ", card.pairCardId, " selected.");
+            this.#setSelectedCard(card);
         }
     }
 
-    #removePair(cardId1, cardId2){
-        for (let card of this.cards) {
-            if (card.id === cardId1 || card.id === cardId2) {
-                card.removed = true;
-            }
-        }
+    #removePair(card1, card2){
+        card1.removed = true;
+        card2.removed = true;
     }
 
-    #setSelectedCard(cardId, pairId){
-        this.#game.selectedCardId = cardId;
-        this.#game.selectedPairId = pairId;
+    #setSelectedCard(card){
+        this.#game.selectedCard = card;
     }
 
     isCardSelected(){
-        return this.#game.selectedCardId != null && this.#game.selectedPairId != null;
+        return this.#game.selectedCard != null;
+    }
+
+    findCardById(cardId){
+        for (let card of this.cards){
+            if (card.id === cardId) return card;
+        }
+        return null;
+    }
+
+    isGameOver(){
+        for (let card of this.cards){
+            if (!card.removed) return false;
+        }
+        return true;
     }
 }

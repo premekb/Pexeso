@@ -1,7 +1,6 @@
 export default class Game{
     #board;
-    #selectedCardId = null;
-    #selectedPairId = null;
+    #selectedCard;
 
     constructor(board) {
         this.#board = board;
@@ -11,19 +10,12 @@ export default class Game{
         return this.#board;
     }
 
-    get selectedCardId() {
-        return this.#selectedCardId;
+
+    get selectedCard() {
+        return this.#selectedCard;
     }
 
-    set selectedCardId(value) {
-        this.#selectedCardId = value;
-    }
-
-    get selectedPairId() {
-        return this.#selectedPairId;
-    }
-
-    set selectedPairId(value) {
-        this.#selectedPairId = value;
+    set selectedCard(value) {
+        this.#selectedCard = value;
     }
 }
