@@ -6,11 +6,12 @@ import GameResultService from "../service/GameResultService.js";
 export default class GameEndPage extends AbstractPage{
     #time;
     #gameResultService = new GameResultService();
+    static URL_NAME = "gameend";
 
     constructor(time) {
         super();
         this.#time = time;
-        console.log(time);
+        history.pushState(GameEndPage.URL_NAME, "", GameEndPage.URL_NAME);
     }
 
     render() {

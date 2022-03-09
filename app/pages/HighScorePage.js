@@ -5,11 +5,13 @@ import MainMenuPage from "./MainMenuPage.js";
 export default class HighScorePage extends AbstractPage{
     #gameResultService;
     #results;
+    static URL_NAME = "highscore";
 
     constructor() {
         super();
         this.#gameResultService = new GameResultService();
         this.#results = this.#gameResultService.results;
+        history.pushState(HighScorePage.URL_NAME, "", HighScorePage.URL_NAME);
     }
 
     render() {

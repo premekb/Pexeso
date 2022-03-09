@@ -5,10 +5,12 @@ export default class GamePage extends AbstractPage{
     #gameService;
     #clickSound = new Audio("resources/card_flip.wav");
     #matchSound = new Audio("resources/ding.wav");
+    static URL_NAME = "game";
 
     constructor(gameService) {
         super();
         this.#gameService = gameService;
+        history.pushState(GamePage.URL_NAME, "", GamePage.URL_NAME);
     }
 
     render() {

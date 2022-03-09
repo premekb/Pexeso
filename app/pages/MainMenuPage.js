@@ -6,6 +6,12 @@ import HighScorePage from "./HighScorePage.js";
 
 export default class MainMenuPage extends AbstractPage{
     #svgNs = "http://www.w3.org/2000/svg";
+    static URL_NAME = "mainmenu";
+
+    constructor() {
+        super();
+        history.pushState(MainMenuPage.URL_NAME, "", MainMenuPage.URL_NAME);
+    }
 
     render() {
         super.render();
