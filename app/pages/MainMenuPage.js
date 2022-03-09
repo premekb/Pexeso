@@ -2,6 +2,7 @@ import AbstractPage from "./AbstractPage.js";
 import GamePage from "./GamePage.js";
 import GameFactory from "../factory/GameFactory.js";
 import GameService from "../service/GameService.js";
+import HighScorePage from "./HighScorePage.js";
 
 export default class MainMenuPage extends AbstractPage{
     #svgNs = "http://www.w3.org/2000/svg";
@@ -19,10 +20,17 @@ export default class MainMenuPage extends AbstractPage{
             gamePage.render();
         })
 
+        const highScoreButton = document.createElement("button");
+        highScoreButton.innerText = "High score";
+        highScoreButton.addEventListener("click", (e) => {
+            const highScorePage = new HighScorePage();
+            highScorePage.render();
+        })
+
         let svg = document.createElementNS(this.#svgNs, "svg")
         svg = this.#setupSvg(svg);
 
-        this.main.append(header, svg, startButton);
+        this.main.append(header, svg, startButton, highScoreButton);
     }
 
     #setupSvg(svg){
