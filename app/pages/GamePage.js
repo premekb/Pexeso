@@ -39,7 +39,7 @@ export default class GamePage extends AbstractPage{
         this.#playSound(clickedCard);
 
         if (this.#gameService.isGameOver()){
-            const gameEndPage = new GameEndPage();
+            const gameEndPage = new GameEndPage(this.#gameService.timeWithMistakes);
             gameEndPage.render();
         }
 

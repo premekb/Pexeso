@@ -7,3 +7,8 @@ div.card {
     color: white;
     cursor: pointer;
 }
+
+svg{
+    width: 600px;
+    height: 400px;
+}

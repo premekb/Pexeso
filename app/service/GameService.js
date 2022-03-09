@@ -3,6 +3,9 @@ import BoardService from "./BoardService.js";
 export default class GameService{
     #game;
     #boardService;
+    #timeStart = new Date();
+    #timeEnd = null;
+    #mistakes = 0;
 
     constructor(game) {
         this.#game = game;
@@ -27,6 +30,7 @@ export default class GameService{
 
             else {
                 console.log("Selected unmatching cards! First pairId: ", this.#game.selectedCard.pairCardId, " Second pairId: ", card.pairCardId);
+                this.#mistakes += 1;
             }
 
             this.#setSelectedCard(null);
@@ -41,6 +45,10 @@ export default class GameService{
     #removePair(card1, card2){
         card1.removed = true;
         card2.removed = true;
+        if (this.isGameOver()){
+            this.#timeEnd = new Date();
+            console.log("The game has ended. With time: " + this.timeWithMistakes + " seconds");
+        }
     }
 
     #setSelectedCard(card){
@@ -63,5 +71,12 @@ export default class GameService{
             if (!card.removed) return false;
         }
         return true;
+    }
+
+    /**
+     * @return time since start + 10 seconds for every mistake
+     */
+    get timeWithMistakes(){
+        return Math.round(((this.#timeEnd - this.#timeStart) / 1000) + this.#mistakes * 10);
     }
 }
