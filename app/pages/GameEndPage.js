@@ -11,7 +11,7 @@ export default class GameEndPage extends AbstractPage{
     constructor(time) {
         super();
         this.#time = time;
-        history.pushState(GameEndPage.URL_NAME, "", GameEndPage.URL_NAME);
+        // TODO history.pushState(GameEndPage.URL_NAME, "", GameEndPage.URL_NAME);
     }
 
     render() {

@@ -5,12 +5,11 @@ import GameService from "../service/GameService.js";
 import HighScorePage from "./HighScorePage.js";
 
 export default class MainMenuPage extends AbstractPage{
-    #svgNs = "http://www.w3.org/2000/svg";
     static URL_NAME = "mainmenu";
 
     constructor() {
         super();
-        history.pushState(MainMenuPage.URL_NAME, "", MainMenuPage.URL_NAME);
+        // TODO history.pushState(MainMenuPage.URL_NAME, "", MainMenuPage.URL_NAME);
     }
 
     render() {
@@ -21,7 +20,7 @@ export default class MainMenuPage extends AbstractPage{
         const startButton = document.createElement("button");
         startButton.innerText = "Start game";
         startButton.addEventListener("click",(e) => {
-            const gameService = new GameService(GameFactory.createGame(2));
+            const gameService = new GameService(GameFactory.createGame(20));
             const gamePage = new GamePage(gameService);
             gamePage.render();
         })
@@ -33,24 +32,6 @@ export default class MainMenuPage extends AbstractPage{
             highScorePage.render();
         })
 
-        let svg = document.createElementNS(this.#svgNs, "svg")
-        svg = this.#setupSvg(svg);
-
-        this.main.append(header, svg, startButton, highScoreButton);
-    }
-
-    #setupSvg(svg){
-        svg.setAttributeNS(this.#svgNs, "viewBox", "-300 -2O0 600 400");
-
-        const circle = document.createElementNS(this.#svgNs, "circle");
-        circle.setAttributeNS(null, "cx", "300");
-        circle.setAttributeNS(null, "cy", "200");
-        circle.setAttributeNS(null, "r", "20");
-        circle.setAttributeNS(null, "fill", "red");
-
-        svg.appendChild(circle);
-
-
-        return svg;
+        this.main.append(header, startButton, highScoreButton);
     }
 }

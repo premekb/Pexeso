@@ -11,7 +11,7 @@ export default class HighScorePage extends AbstractPage{
         super();
         this.#gameResultService = new GameResultService();
         this.#results = this.#gameResultService.results;
-        history.pushState(HighScorePage.URL_NAME, "", HighScorePage.URL_NAME);
+        // TODO history.pushState(HighScorePage.URL_NAME, "", HighScorePage.URL_NAME);
     }
 
     render() {

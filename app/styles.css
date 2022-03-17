@@ -1,14 +1,38 @@
-div.card {
-    width: 50px;
-    height: 50px;
-    background-color: red;
-    margin: 5px;
-    display:inline-block;
-    color: white;
+/* Flip card animation inspired by https://www.w3schools.com/howto/howto_css_flip_card.asp*/
+
+svg{
+   width: 1000px;
+    height: 1000px;
+    margin: auto;
+    display: block;
+}
+
+text{
+    text-anchor: middle;
+    dominant-baseline: middle;
+    fill: white;
+    font-size: 70px;
+    font-family: fantini;
+}
+
+.card:hover > text{
+    fill:red;
+    cursor: pointer;
+}
+
+text {
+    transition: fill 150ms ease-in 10ms
+}
+
+.card:hover{
     cursor: pointer;
 }
 
 svg{
-    width: 600px;
-    height: 400px;
+    fill: black;
+}
+
+@font-face {
+    font-family: 'fantini'; /*a name to be used later*/
+    src: url('resources/fantini.ttf'); /*URL to font*/
 }
