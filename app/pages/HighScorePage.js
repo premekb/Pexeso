@@ -10,17 +10,14 @@ export default class HighScorePage extends AbstractPage{
     constructor() {
         super();
         this.#gameResultService = new GameResultService();
-        this.#results = this.#gameResultService.results;
+        this.#results = this.#gameResultService.results == null ? [] : this.#gameResultService.results ;
         // TODO history.pushState(HighScorePage.URL_NAME, "", HighScorePage.URL_NAME);
     }
 
     render() {
         super.render();
-        const header = document.createElement("h1");
-        header.innerText = "High score";
-        this.main.append(header);
 
-        if (this.#results == null){
+       /** if (this.#results == null){
             const paragraph = document.createElement("paragraph");
             paragraph.innerText = "No results available at the moment.";
             this.main.append(paragraph);
@@ -28,10 +25,13 @@ export default class HighScorePage extends AbstractPage{
         else{
             const tableElement = this.#createTable();
             this.main.append(tableElement);
-        }
+        }*/
+
+        const tableElement = this.#createTable();
+        this.main.append(tableElement);
 
         const mainMenuButton = document.createElement("button");
-        mainMenuButton.innerText = "Main Menu";
+        mainMenuButton.innerText = "Back to menu";
         mainMenuButton.addEventListener("click", (e) => {
             const mainMenuPage = new MainMenuPage();
             mainMenuPage.render();
@@ -42,19 +42,29 @@ export default class HighScorePage extends AbstractPage{
 
     #createTable(){
         const table = document.createElement("table");
-        const firstRow = this.#createTableHeading();
-        table.append(firstRow);
+        const tableHead = this.#createTableHeading();
+        table.append(tableHead);
 
-        for (let gameResult of this.#results){
-            const tableRow = this.#createTableEntry(gameResult);
-            table.append(tableRow);
+        const tableBody = document.createElement("tbody");
+        let tableRow;
+        for (let i = 0; i < 10; i++){
+            if (i < this.#results.length) {
+                tableRow = this.#createTableEntry(this.#results[i]);
+            }
+            else {
+                tableRow = this.#createEmptyTableEntry();
+            }
+            tableBody.append(tableRow);
         }
 
+        table.append(tableBody);
         return table;
     }
 
     #createTableHeading(){
+        const thead = document.createElement("thead");
         const firstTableRow = document.createElement("tr");
+        thead.append(firstTableRow);
 
         const cellsHtml = `
             <th>Name</th>
@@ -64,7 +74,21 @@ export default class HighScorePage extends AbstractPage{
         `
         firstTableRow.insertAdjacentHTML("afterbegin", cellsHtml)
 
-        return firstTableRow;
+        return thead;
+    }
+
+    #createEmptyTableEntry(){
+        const tableRow = document.createElement("tr");
+
+        const cellsHtml = `
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        `
+        tableRow.insertAdjacentHTML("afterbegin", cellsHtml);
+
+        return tableRow;
     }
 
     #createTableEntry(gameResult){
