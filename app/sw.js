@@ -5,7 +5,7 @@
  const CACHE_NAME = "offline";
  const urlsToCache = [
      "app.js",
-     "styles.css",
+     "General.css",
      "app.html",
      "util/HistoryHandler.js",
      "util/LocalStorageKeys.js",

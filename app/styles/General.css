@@ -1,0 +1,88 @@
+/* Flip card animation inspired by https://www.w3schools.com/howto/howto_css_flip_card.asp*/
+
+svg{
+   width: 1000px;
+    height: 1000px;
+    margin: auto;
+    display: block;
+}
+
+text{
+    text-anchor: middle;
+    dominant-baseline: middle;
+    fill: white;
+    font-size: 70px;
+    font-family: fantini;
+    transition: fill 150ms ease-in 10ms;
+}
+
+.card:hover > text{
+    fill:red;
+    cursor: pointer;
+}
+
+.card:hover{
+    cursor: pointer;
+}
+
+svg{
+    fill: black;
+}
+
+@font-face {
+    font-family: 'fantini'; /*a name to be used later*/
+    src: url('../resources/font/fantini.ttf'); /*URL to font*/
+}
+
+@font-face {
+    font-family: 'magic'; /*a name to be used later*/
+    src: url('../resources/font/magic.ttf'); /*URL to font*/
+}
+
+body{
+    background-color: #413156;
+    color: white;
+    font-family: magic;
+}
+
+button {
+    background-color: #7D576C;
+    color: white;
+    border-radius: 10px;
+    border: 1px inset black;
+    padding: 5px 50px;
+    font-size: 20px;
+    font-family: magic;
+    transition-duration: 0.2s;
+    display: block;
+}
+
+button:hover{
+    cursor: pointer;
+    color: #DFB1BB;
+}
+
+#outline-wrapper {
+    border: solid #DFB1BB;
+    border-radius: 10px;
+    box-shadow: 0 0 0 0;
+    margin: auto;
+}
+
+
+main {
+    display:grid;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+}
+
+#main-menu {
+    block-size: fit-content;
+    display: inline-block;
+    background-color: #7D576C;
+    border-radius: 10px;
+    border: 1px solid black;
+    font-size: 40px;
+    padding: 5px 10px;
+}

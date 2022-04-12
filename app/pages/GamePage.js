@@ -3,8 +3,8 @@ import GameEndPage from "./GameEndPage.js";
 
 export default class GamePage extends AbstractPage{
     #gameService;
-    #clickSound = new Audio("resources/card_flip.wav");
-    #matchSound = new Audio("resources/ding.wav");
+    #clickSound = new Audio("resources/sound/card_flip.wav");
+    #matchSound = new Audio("resources/sound/ding.wav");
     #svgNs = "http://www.w3.org/2000/svg";
     static URL_NAME = "game";
 
@@ -96,12 +96,20 @@ export default class GamePage extends AbstractPage{
         text.innerHTML = "?";
         text.classList.add("card_text")
 
+        const img = document.createElementNS(this.#svgNs, "image");
+        img.setAttributeNS(null, "x", `${col * 120}`);
+        img.setAttributeNS(null, "y", `${row * 120}`);
+        img.setAttributeNS(null, "width", "100");
+        img.setAttributeNS(null, "height", "100");
+        img.setAttributeNS(null, "href", card.svgImgUrl);
+        img.style.display = "none";
+
         const group = document.createElementNS(this.#svgNs, "g");
         group.classList.add("card");
         group.dataset.cardId = card.id;
         group.dataset.removed = card.removed;
         group.addEventListener("click", this.#cardClick.bind(this), true);
-        group.append(rect, text);
+        group.append(rect, text, img);
 
         return group;
     }

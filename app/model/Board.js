@@ -6,14 +6,16 @@ export default class Board{
 
     constructor(size) {
         this.#size = size;
+        let imgCtr = 1;
         for (let i = 0; i < size; i += 2){
-            this.#createCardPair(i);
+            this.#createCardPair(i, `resources/img/card_${imgCtr}.svg`);
+            imgCtr++;
         }
     }
 
-    #createCardPair(idx) {
-        const card1 = new Card(idx);
-        const card2 = new Card(idx + 1); // TODO no content for now
+    #createCardPair(idx, imgUrl) {
+        const card1 = new Card(idx, imgUrl);
+        const card2 = new Card(idx + 1, imgUrl); // TODO no content for now
         card1.pairCardId = idx + 1;
         card2.pairCardId = idx;
         this.#cards.push(card1);

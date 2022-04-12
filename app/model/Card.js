@@ -2,12 +2,13 @@ export default class Card{
     #id;
     // Id of the card that is in pair
     #pairCardId;
-    #content;
+    #svgImgUrl;
     #removed = false;
 
-    constructor(id, content) {
+    constructor(id, svgImgUrl) {
         this.#id = id;
-        this.#content = content;
+        this.#svgImgUrl = svgImgUrl;
+        this._svgImgUrl = svgImgUrl;
     }
 
     get id() {
@@ -41,5 +42,14 @@ export default class Card{
 
     get isRemoved() {
         return this.#removed;
+    }
+
+
+    get svgImgUrl() {
+        return this._svgImgUrl;
+    }
+
+    set svgImgUrl(value) {
+        this._svgImgUrl = value;
     }
 }
