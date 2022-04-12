@@ -18,9 +18,17 @@ export default class MainMenuPage extends AbstractPage{
         const startButton = this.#getStartButton()
         const highScoreButton = this.#getHighScoreButton();
         const divWrapper = this.#getDivWrapper();
-        divWrapper.append(header, startButton, highScoreButton);
+        const clickMeSpan = this.#getClickMeSpan()
+        divWrapper.append(header, startButton, highScoreButton, clickMeSpan);
 
         this.main.append(divWrapper);
+    }
+
+    #getClickMeSpan(){
+        const span = document.createElement("span");
+        span.innerText = "Click me ;)";
+        span.id = "click-me";
+        return span;
     }
 
     #getDivWrapper(){
@@ -32,7 +40,7 @@ export default class MainMenuPage extends AbstractPage{
     #getHeader(){
         const header = document.createElement("h1");
         header.innerText = "Pexeso"
-        header.id = "main-menu"
+        header.id = "main-menu-header"
         return header;
     }
 

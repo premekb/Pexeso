@@ -63,26 +63,17 @@ button:hover{
 }
 
 #outline-wrapper {
-    border: solid #DFB1BB;
+    border: 4px solid #DFB1BB;
     border-radius: 10px;
     box-shadow: 0 0 0 0;
     margin: auto;
+    display: flex;
+    flex-direction: column;
 }
-
 
 main {
     display:grid;
     align-items: center;
     justify-content: center;
     height: 90vh;
-}
-
-#main-menu {
-    block-size: fit-content;
-    display: inline-block;
-    background-color: #7D576C;
-    border-radius: 10px;
-    border: 1px solid black;
-    font-size: 40px;
-    padding: 5px 10px;
 }

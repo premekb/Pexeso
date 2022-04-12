@@ -12,9 +12,7 @@ export default class AbstractPage{
         let stylesheets = document.querySelectorAll("link[rel=stylesheet]");
         for (let stylesheet of stylesheets){
             const hrefSplit = stylesheet.href.split("/");
-            console.log(hrefSplit[hrefSplit.length - 1]);
             if (hrefSplit[hrefSplit.length - 1] !== this.#GENERAL_STYLESHEET){
-                console.log(stylesheet.href);
                 stylesheet.remove();
             }
         }
