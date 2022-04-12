@@ -1,3 +1,5 @@
+import MainMenuPage from "./MainMenuPage.js";
+
 export default class AbstractPage{
     main = document.querySelector("#main");
 
@@ -8,10 +10,20 @@ export default class AbstractPage{
         this.#replaceStyleSheet()
     }
 
-    getDivWrapper(){
+    createDivWrapper(){
         const divWrapper = document.createElement("div");
         divWrapper.id = "outline-wrapper";
         return divWrapper;
+    }
+
+    createMainMenuButton(){
+        const mainMenuButton = document.createElement("button");
+        mainMenuButton.innerText = "Back to menu";
+        mainMenuButton.addEventListener("click", (e) => {
+            const mainMenuPage = new MainMenuPage();
+            mainMenuPage.render();
+        })
+        return mainMenuButton;
     }
 
     #replaceStyleSheet(){

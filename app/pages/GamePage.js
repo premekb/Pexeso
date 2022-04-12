@@ -16,15 +16,31 @@ export default class GamePage extends AbstractPage{
 
     render() {
         super.render();
-        let svg = document.createElementNS(this.#svgNs, "svg");
-        svg.setAttributeNS(this.#svgNs, "viewBox", "0 0 1000 1000");
-        this.main.append(svg);
-        this.#renderCards();
+        const timerDiv = this.#createTimer();
 
-        // TODO REMOVE
-        const gameEndPage = new GameEndPage(1000);
-        gameEndPage.render();
-        // TODO REMOVE
+        const svg = document.createElementNS(this.#svgNs, "svg");
+        svg.setAttributeNS(this.#svgNs, "viewBox", "0 0 1000 1000");
+
+        const mainMenuButton = this.createMainMenuButton();
+
+        this.main.append(timerDiv, svg, mainMenuButton);
+        this.#renderCards();
+    }
+
+    #createTimer(){
+        const timerDiv = document.createElement("div");
+        timerDiv.id = "timer";
+        this.#refreshTimer(timerDiv);
+        setInterval(this.#refreshTimer.bind(this, timerDiv) , 1000);
+        return timerDiv;
+    }
+
+    #refreshTimer(timer){
+        const totalSeconds = this.#gameService.timeWithMistakes;
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds - minutes * 60;
+
+        timer.innerText = `Time: ${minutes} : ${seconds}`;
     }
 
     #renderCards(){
@@ -61,7 +77,7 @@ export default class GamePage extends AbstractPage{
         this.#playSound(clickedCard);
 
         if (this.#gameService.isGameOver()){
-            const gameEndPage = new GameEndPage(this.#gameService.timeWithMistakes);
+            const gameEndPage = new GameEndPage(this.#gameService.endTimeWithMistakes);
             gameEndPage.render();
         }
 

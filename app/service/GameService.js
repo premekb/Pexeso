@@ -47,7 +47,7 @@ export default class GameService{
         card2.removed = true;
         if (this.isGameOver()){
             this.#timeEnd = new Date();
-            console.log("The game has ended. With time: " + this.timeWithMistakes + " seconds");
+            console.log("The game has ended. With time: " + this.endTimeWithMistakes + " seconds");
         }
     }
 
@@ -74,9 +74,15 @@ export default class GameService{
     }
 
     /**
-     * @return time since start + 10 seconds for every mistake
+     * Can only be called, after the game has already ended
+     *
+     * @return seconds, time since start + 10 seconds for every mistake
      */
-    get timeWithMistakes(){
+    get endTimeWithMistakes(){
         return Math.round(((this.#timeEnd - this.#timeStart) / 1000) + this.#mistakes * 10);
+    }
+
+    get timeWithMistakes(){
+        return Math.round(((new Date() - this.#timeStart) / 1000) + this.#mistakes * 10);
     }
 }

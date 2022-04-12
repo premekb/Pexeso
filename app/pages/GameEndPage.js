@@ -20,7 +20,7 @@ export default class GameEndPage extends AbstractPage{
         const header = this.#createHeader();
         const form = this.#createForm();
 
-        const divWrapper = this.getDivWrapper();
+        const divWrapper = this.createDivWrapper();
         divWrapper.append(header, form);
 
         this.main.append(divWrapper);

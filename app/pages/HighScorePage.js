@@ -30,12 +30,7 @@ export default class HighScorePage extends AbstractPage{
         const tableElement = this.#createTable();
         this.main.append(tableElement);
 
-        const mainMenuButton = document.createElement("button");
-        mainMenuButton.innerText = "Back to menu";
-        mainMenuButton.addEventListener("click", (e) => {
-            const mainMenuPage = new MainMenuPage();
-            mainMenuPage.render();
-        })
+        const mainMenuButton = this.createMainMenuButton();
 
         this.main.append(mainMenuButton);
     }
