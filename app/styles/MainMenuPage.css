@@ -18,9 +18,30 @@ button {
 
 #click-me {
     position: absolute;
-    right: 20px;
+    right: 30px;
     top: 40px;
     cursor: pointer;
+    animation-name: click-me-animation;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.spin-header{
+    perspective: 100px;
+    animation-name: spin-header-animation;
+    animation-duration: 2s;
+}
+
+@keyframes spin-header-animation {
+    0% {transform: rotateY(0deg);}
+    50% {transform: rotateY(180deg);}
+    100% {transform: rotateY(360deg);}
+}
+
+@keyframes click-me-animation {
+    0% {transform: scale(1); color: white}
+    50% {transform: scale(1.5); color: #DFB1BB}
+    100% {transform: scale(1); color: white}
 }
 
 #outline-wrapper {

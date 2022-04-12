@@ -28,6 +28,13 @@ export default class MainMenuPage extends AbstractPage{
         const span = document.createElement("span");
         span.innerText = "Click me ;)";
         span.id = "click-me";
+        span.addEventListener("click", () => {
+            const header = document.querySelector("#main-menu-header");
+            header.style.animation = "spin-header-animation 2s linear";
+            setTimeout(() => {
+                header.style.animation = "";
+            }, 2100)
+        })
         return span;
     }
 
@@ -43,7 +50,8 @@ export default class MainMenuPage extends AbstractPage{
         highScoreButton.innerText = "High score";
         highScoreButton.addEventListener("click", (e) => {
             const highScorePage = new HighScorePage();
-            highScorePage.render();
+            this.main.classList.add("main-disappearance");
+            setTimeout(() => {highScorePage.render();}, 1000);
         })
         return highScoreButton;
     }
@@ -52,9 +60,11 @@ export default class MainMenuPage extends AbstractPage{
         const startButton = document.createElement("button");
         startButton.innerText = "Start game";
         startButton.addEventListener("click",(e) => {
-            const gameService = new GameService(GameFactory.createGame(20));
-            const gamePage = new GamePage(gameService);
-            gamePage.render();
+            this.main.classList.add("main-disappearance");
+            setTimeout(() => {
+                const gameService = new GameService(GameFactory.createGame(20));
+                const gamePage = new GamePage(gameService);
+                gamePage.render();}, 1000);
         })
         return startButton;
     }

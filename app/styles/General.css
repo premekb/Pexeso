@@ -76,4 +76,21 @@ main {
     align-items: center;
     justify-content: center;
     height: 90vh;
+    animation-name: main-appearance;
+    animation-duration: 1s;
+}
+
+.main-disappearance {
+    animation-name: main-disappearance;
+    animation-duration: 1s;
+}
+
+@keyframes main-appearance {
+    0% {transform: translateY(-100%);}
+    100% {transform: translateY(0%);}
+}
+
+@keyframes main-disappearance {
+    0% {transform: translateY(0%);}
+    100% {transform: translateY(-100%);}
 }

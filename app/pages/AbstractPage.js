@@ -6,7 +6,7 @@ export default class AbstractPage{
     #GENERAL_STYLESHEET = "General.css";
 
     render(){
-        this.#resetMain();
+        this.#resetBody();
         this.#replaceStyleSheet()
     }
 
@@ -21,7 +21,8 @@ export default class AbstractPage{
         mainMenuButton.innerText = "Back to menu";
         mainMenuButton.addEventListener("click", (e) => {
             const mainMenuPage = new MainMenuPage();
-            mainMenuPage.render();
+            this.main.classList.add("main-disappearance");
+            setTimeout(() => {mainMenuPage.render();}, 1000);
         })
         return mainMenuButton;
     }
@@ -40,8 +41,10 @@ export default class AbstractPage{
         document.querySelector("head").append(link);
     }
 
-    #resetMain(){
-        this.main.innerHTML = "";
+    #resetBody(){
+        document.querySelector("body").innerHTML = "";
+        this.main = document.createElement("main");
+        document.querySelector("body").append(this.main);
         this.main.classList.add(this.constructor.name);
     }
 }
