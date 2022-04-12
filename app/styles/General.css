@@ -45,7 +45,7 @@ body{
     font-family: magic;
 }
 
-button {
+button, input[type="submit"] {
     background-color: #7D576C;
     color: white;
     border-radius: 10px;
@@ -57,7 +57,7 @@ button {
     display: block;
 }
 
-button:hover{
+button:hover, input[type="submit"]:hover {
     cursor: pointer;
     color: #DFB1BB;
 }

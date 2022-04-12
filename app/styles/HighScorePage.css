@@ -44,3 +44,7 @@ thead tr:first-child th:last-child{
 thead tr:first-child{
     border-bottom: 1px solid black;
 }
+
+button {
+    margin: auto;
+}

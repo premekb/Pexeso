@@ -8,6 +8,12 @@ export default class AbstractPage{
         this.#replaceStyleSheet()
     }
 
+    getDivWrapper(){
+        const divWrapper = document.createElement("div");
+        divWrapper.id = "outline-wrapper";
+        return divWrapper;
+    }
+
     #replaceStyleSheet(){
         let stylesheets = document.querySelectorAll("link[rel=stylesheet]");
         for (let stylesheet of stylesheets){

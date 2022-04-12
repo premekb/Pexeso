@@ -17,7 +17,7 @@ export default class MainMenuPage extends AbstractPage{
         const header = this.#getHeader();
         const startButton = this.#getStartButton()
         const highScoreButton = this.#getHighScoreButton();
-        const divWrapper = this.#getDivWrapper();
+        const divWrapper = this.getDivWrapper();
         const clickMeSpan = this.#getClickMeSpan()
         divWrapper.append(header, startButton, highScoreButton, clickMeSpan);
 
@@ -29,12 +29,6 @@ export default class MainMenuPage extends AbstractPage{
         span.innerText = "Click me ;)";
         span.id = "click-me";
         return span;
-    }
-
-    #getDivWrapper(){
-        const divWrapper = document.createElement("div");
-        divWrapper.id = "outline-wrapper";
-        return divWrapper;
     }
 
     #getHeader(){

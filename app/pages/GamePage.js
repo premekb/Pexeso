@@ -20,6 +20,11 @@ export default class GamePage extends AbstractPage{
         svg.setAttributeNS(this.#svgNs, "viewBox", "0 0 1000 1000");
         this.main.append(svg);
         this.#renderCards();
+
+        // TODO REMOVE
+        const gameEndPage = new GameEndPage(1000);
+        gameEndPage.render();
+        // TODO REMOVE
     }
 
     #renderCards(){

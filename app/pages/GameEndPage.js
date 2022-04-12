@@ -17,16 +17,13 @@ export default class GameEndPage extends AbstractPage{
     render() {
         super.render();
 
-        const header = document.createElement("h1");
-        header.innerText = "Game End!";
-
-        const paragraph = document.createElement("p");
-        paragraph.innerText = "Time: " + this.#time;
-
+        const header = this.#createHeader();
         const form = this.#createForm();
-        form.addEventListener("submit", this.#handleForm.bind(this));
 
-        this.main.append(header, paragraph, form);
+        const divWrapper = this.getDivWrapper();
+        divWrapper.append(header, form);
+
+        this.main.append(divWrapper);
     }
 
     #handleForm(e){
@@ -53,32 +50,37 @@ export default class GameEndPage extends AbstractPage{
 
     #createForm(){
         const form = document.createElement("form");
+        const htmlForm = `
+        <div>
+            <label for="name">Name</label>
+            <input type="text" id="name">
+        </div>
+        
+        <div>
+            <label for="message">Message</label>
+            <input type="text" id="message">
+        </div>
+        
+        <div>
+            <label for="location">Location</label>
+            <input type="text" id="location" disabled>
+        </div>
+        
+        <input type="hidden" value="${this.#time}">
+        
+        <input type="submit">
+        `
 
-        const nameLabel = document.createElement("label");
-        nameLabel.htmlFor = "name";
-        nameLabel.innerText = "Name";
-
-        const nameInput = document.createElement("input");
-        nameInput.type = "text";
-        nameInput.id = "name";
-
-        const messageLabel = document.createElement("label");
-        messageLabel.htmlFor = "message";
-        messageLabel.innerText = "Message";
-
-        const messageInput = document.createElement("input");
-        messageInput.type = "text";
-        messageInput.id = "message";
-
-        const timeHiddenInput = document.createElement("input");
-        timeHiddenInput.type = "hidden";
-        timeHiddenInput.value = this.#time;
-
-        const submitInput = document.createElement("input");
-        submitInput.type = "submit";
-
-        form.append(nameLabel,nameInput, messageLabel, messageInput, timeHiddenInput, submitInput);
+        form.insertAdjacentHTML("afterbegin", htmlForm);
+        form.addEventListener("submit", this.#handleForm.bind(this));
 
         return form;
+    }
+
+    #createHeader(){
+        const header = document.createElement("h1");
+        header.innerHTML = `Congratulations, your time is: <span id="time">${this.#time}</span>`;
+
+        return header;
     }
 }

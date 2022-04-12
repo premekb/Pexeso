@@ -1,0 +1,46 @@
+#time {
+    color: #DFB1BB;
+}
+
+h1 {
+    font-weight: unset;
+}
+
+input[type="text"]{
+    background-color: #7D576C;
+    border: 1px solid black;
+    color: white;
+    width: 80%;
+}
+
+input[type="submit"]{
+    margin: auto;
+}
+
+form > div {
+    margin: 10px 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+label {
+    padding-right: 14px;
+    flex: 1;
+}
+
+label ~ input[type="text"]{
+    flex: 4;
+}
+
+label, label ~ input[type="text"] {
+    font-size: 20px;
+}
+
+#outline-wrapper {
+    padding: 10px 25px 40px;
+}
+
+input[type="text"]:disabled{
+    cursor: not-allowed;
+}
