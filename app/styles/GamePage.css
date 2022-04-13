@@ -9,6 +9,7 @@ svg {
     column-gap: 85px;
     row-gap: 35px;
     padding: 50px;
+    position: relative;
 }
 
 g.front > image {
@@ -19,12 +20,12 @@ g.back > image {
     display: unset;
 }
 
-g.front > rect {
+g.front > text {
     display: unset;
 }
 
-g.back > rect {
-    display: unset;
+g.back > text {
+    display: none;
 }
 
 image {
@@ -33,10 +34,6 @@ image {
 }
 
 g:hover > image {
-    filter: brightness(0) saturate(100%) invert(91%) sepia(5%) saturate(2829%) hue-rotate(295deg) brightness(89%) contrast(96%);
-}
-
-g.removed > image {
     filter: brightness(0) saturate(100%) invert(91%) sepia(5%) saturate(2829%) hue-rotate(295deg) brightness(89%) contrast(96%);
 }
 
@@ -74,4 +71,28 @@ text{
 #main-menu-button{
     margin: auto;
     margin-top: 25px;
+}
+
+.card[data-removed="true"] > text{
+    display: none;
+    cursor: unset;
+}
+
+.card[data-removed="true"] > image{
+    display: unset;
+    cursor: unset;
+    filter: brightness(0) saturate(100%) invert(91%) sepia(5%) saturate(2829%) hue-rotate(295deg) brightness(89%) contrast(96%);
+}
+
+.plusSeconds{
+    position: fixed;
+    animation-duration: 2s;
+    animation-name: plus-seconds-animation;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes plus-seconds-animation {
+    100% {transform: translateY(-50vh); opacity: 0}
 }

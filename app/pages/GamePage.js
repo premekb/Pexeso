@@ -65,14 +65,28 @@ export default class GamePage extends AbstractPage{
         this.#gameService.selectCard(clickedCard);
         this.#playSound(clickedCard);
 
+        if (this.#gameService.wasLastSelectMistake()){
+            this.#animatePlusSeconds();
+        }
+
         if (this.#gameService.isGameOver()){
             const gameEndPage = new GameEndPage(this.#gameService.endTimeWithMistakes);
             gameEndPage.render();
         }
 
         else{
-            this.render();
+            const cardDiv = document.querySelector("#outline-wrapper");
+            this.main.replaceChild(this.#createCards(), cardDiv);
         }
+    }
+
+    #animatePlusSeconds(){
+        console.log("animating 10 seconds");
+        const plusSecondsSpan = document.createElement("span");
+        plusSecondsSpan.innerText = "+10 seconds";
+        plusSecondsSpan.classList.add("plusSeconds");
+        this.main.append(plusSecondsSpan);
+        setTimeout(() => {this.main.removeChild(plusSecondsSpan)}, 1000);
     }
 
     #playSound(clickedCard){
@@ -92,10 +106,11 @@ export default class GamePage extends AbstractPage{
      * @return {SVGSVGElement}
      */
     #createCard(card, row, col){
+        const cardSideClass = this.#gameService.isThisCardSelected(card) ? "back" : "front";
         const cardHtml = `
-        <g data-card-id="${card.id} data-removed=${card.removed}" class="card front">
+        <g data-card-id="${card.id}" data-removed="${card.removed}" class="card ${cardSideClass}">
             <rect width="100" height="100" rx="10" ry="10" class="card_rect"/>
-            <text x="50" y="50" class="card_text">?</text>
+            <text x="50" y="50" class="card_text">${card.id} : ${card.pairCardId}</text>
             <image width="100" height="100" href="${card.svgImgUrl}"></image>
         </g>
         `

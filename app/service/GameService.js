@@ -6,6 +6,7 @@ export default class GameService{
     #timeStart = new Date();
     #timeEnd = null;
     #mistakes = 0;
+    #wasMistake = false;
 
     constructor(game) {
         this.#game = game;
@@ -21,16 +22,19 @@ export default class GameService{
         if (this.isCardSelected()){
             if (this.#game.selectedCard.id === card.id){
                 console.log("Card unselected.");
+                this.#wasMistake = false;
             }
 
             else if (this.#game.selectedCard.pairCardId === card.id) {
                 console.log("PairId: ", card.pairCardId, " found!");
                 this.#removePair(card, this.#game.selectedCard);
+                this.#wasMistake = false;
             }
 
             else {
                 console.log("Selected unmatching cards! First pairId: ", this.#game.selectedCard.pairCardId, " Second pairId: ", card.pairCardId);
                 this.#mistakes += 1;
+                this.#wasMistake = true;
             }
 
             this.#setSelectedCard(null);
@@ -38,6 +42,7 @@ export default class GameService{
 
         else{
             console.log("CardId: ", card.id, ", PairId: ", card.pairCardId, " selected.");
+            this.#wasMistake = false;
             this.#setSelectedCard(card);
         }
     }
@@ -57,6 +62,10 @@ export default class GameService{
 
     isCardSelected(){
         return this.#game.selectedCard != null;
+    }
+
+    isThisCardSelected(card) {
+        return this.#game.selectedCard == null ? false : this.#game.selectedCard.id === card.id;
     }
 
     findCardById(cardId){
@@ -84,5 +93,9 @@ export default class GameService{
 
     get timeWithMistakes(){
         return Math.round(((new Date() - this.#timeStart) / 1000) + this.#mistakes * 10);
+    }
+
+    wasLastSelectMistake(){
+        return this.#wasMistake;
     }
 }
