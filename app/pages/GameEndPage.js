@@ -24,6 +24,7 @@ export default class GameEndPage extends AbstractPage{
         divWrapper.append(header, form);
 
         this.main.append(divWrapper);
+        this.#tryToInsertLocation();
     }
 
     #handleForm(e){
@@ -45,7 +46,33 @@ export default class GameEndPage extends AbstractPage{
     }
 
     #validateForm(form){
-        return true;
+        const nameInput = form.querySelector("#name");
+        const messageInput = form.querySelector("#message");
+        const name = nameInput.value;
+        const message = messageInput.value;
+        let valid = true;
+
+        if (name.length === 0 || name.length > 10){
+            alert("Your name length must be between 1 and 10 characters.");
+            nameInput.classList.add("failed");
+            valid = false;
+        }
+
+        else{
+            nameInput.classList.remove("failed");
+        }
+
+        if (message.length === 0 || message.length > 16){
+            alert("Your message length must be between 1 and 16 characters");
+            messageInput.classList.add("failed");
+            valid = false;
+        }
+
+        else{
+            messageInput.classList.remove("failed");
+        }
+
+        return valid;
     }
 
     #createForm(){
@@ -53,17 +80,17 @@ export default class GameEndPage extends AbstractPage{
         const htmlForm = `
         <div>
             <label for="name">Name</label>
-            <input type="text" id="name">
+            <input type="text" placeholder="Fill in your name please." id="name" autofocus required minlength="1" maxlength="10">
         </div>
         
         <div>
             <label for="message">Message</label>
-            <input type="text" id="message">
+            <input type="text" placeholder="Fill in your message please." id="message" required minlength="1" maxlength="16">
         </div>
         
         <div>
             <label for="location">Location</label>
-            <input type="text" id="location" disabled>
+            <input type="text" placeholder="Will get filled in automatically." id="location" disabled>
         </div>
         
         <input type="hidden" value="${this.#time}">
@@ -82,5 +109,33 @@ export default class GameEndPage extends AbstractPage{
         header.innerHTML = `Congratulations, your time is: <span id="time">${this.#time}</span>`;
 
         return header;
+    }
+
+    #tryToInsertLocation(){
+        const success = async (position) => {
+            const locationInput = document.querySelector("#location");
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            console.log(position.coords);
+            const cityConverterUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
+
+            const response = await fetch(cityConverterUrl);
+            const responseJson = await response.json();
+
+            locationInput.value = responseJson.city + ", " + responseJson.locality;
+        }
+
+        const failure = (e) => {
+            const locationInput = document.querySelector("#location");
+            locationInput.value = "Unknown";
+        }
+
+        if (!navigator.onLine) {
+            failure(null);
+        }
+
+        else{
+            navigator.geolocation.getCurrentPosition(success, failure);
+        }
     }
 }

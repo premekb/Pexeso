@@ -22,7 +22,6 @@ export default class GamePage extends AbstractPage{
         const mainMenuButton = this.createMainMenuButton();
 
         this.main.append(timerDiv, cardsDiv, mainMenuButton);
-
     }
 
     #createTimer(){

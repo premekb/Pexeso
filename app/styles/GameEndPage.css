@@ -11,6 +11,15 @@ input[type="text"]{
     border: 1px solid black;
     color: white;
     width: 80%;
+    font-family: magic;
+    text-indent: 5px;
+    border-radius: 5px;
+}
+
+input[type="text"]::placeholder{
+    font-style: italic;
+    color: lightgray;
+    font-family: magic;
 }
 
 input[type="submit"]{
@@ -43,4 +52,8 @@ label, label ~ input[type="text"] {
 
 input[type="text"]:disabled{
     cursor: not-allowed;
+}
+
+input[type="text"]:invalid, .failed {
+    border: 1px solid red !important;
 }

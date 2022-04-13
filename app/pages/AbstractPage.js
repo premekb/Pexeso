@@ -8,6 +8,23 @@ export default class AbstractPage{
     render(){
         this.#resetBody();
         this.#replaceStyleSheet()
+       // TODO this.#renderConnectionIcon();
+    }
+
+    #renderConnectionIcon(){
+        if (navigator.onLine !== undefined){
+            this.main.append(this.#createConnectionIcon());
+        }
+
+        window.addEventListener("online", this.#renderConnectionIcon.bind(this));
+        window.addEventListener("offline", this.#renderConnectionIcon.bind(this));
+    }
+
+    #createConnectionIcon(){
+        let connectionImg = document.createElement("img");
+        connectionImg.src = navigator.online ? "resources/img/wifi.svg" : "resources/img/no_wifi.svg";
+        connectionImg.id = "connection-icon";
+        return connectionImg;
     }
 
     createDivWrapper(){
