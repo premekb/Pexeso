@@ -19,6 +19,7 @@ export default class AbstractPage{
     createMainMenuButton(){
         const mainMenuButton = document.createElement("button");
         mainMenuButton.innerText = "Back to menu";
+        mainMenuButton.id = "main-menu-button";
         mainMenuButton.addEventListener("click", (e) => {
             const mainMenuPage = new MainMenuPage();
             this.main.classList.add("main-disappearance");

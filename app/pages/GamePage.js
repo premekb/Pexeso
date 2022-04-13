@@ -16,15 +16,13 @@ export default class GamePage extends AbstractPage{
 
     render() {
         super.render();
+
         const timerDiv = this.#createTimer();
-
-        const svg = document.createElementNS(this.#svgNs, "svg");
-        svg.setAttributeNS(this.#svgNs, "viewBox", "0 0 1000 1000");
-
+        const cardsDiv = this.#createCards();
         const mainMenuButton = this.createMainMenuButton();
 
-        this.main.append(timerDiv, svg, mainMenuButton);
-        this.#renderCards();
+        this.main.append(timerDiv, cardsDiv, mainMenuButton);
+
     }
 
     #createTimer(){
@@ -43,13 +41,13 @@ export default class GamePage extends AbstractPage{
         timer.innerText = `Time: ${minutes} : ${seconds}`;
     }
 
-    #renderCards(){
+    #createCards(){
+        const divWrapper = this.createDivWrapper();
         const cards = this.#gameService.cards;
-        const cardsSvg = document.createElementNS(this.#svgNs, "g");
         let row = 1;
         let col = 1;
         for (let card of cards) {
-            cardsSvg.append(this.#createCard(card, row, col));
+            divWrapper.append(this.#createCard(card, row, col));
 
             col++;
             if (col === 5){
@@ -57,18 +55,9 @@ export default class GamePage extends AbstractPage{
                 row++;
             }
         }
-        document.querySelector("svg").append(cardsSvg);
+        return divWrapper;
     }
 
-
-    #renderCard(card) {
-        const html = `<div class="card" data-card-id="${card.id}" data-removed="${card.removed}">
-        </div>`;
-        //cardDiv.innerText = !card.removed ? card.id + " " + card.pairCardId : "r";
-
-        this.main.insertAdjacentHTML("afterbegin", html);
-        document.querySelector(`div[data-card-id="${card.id}"]`).addEventListener("click", this.#cardClick.bind(this));
-    }
 
     #cardClick(e){
         const clickedCardId = parseInt(e.target.parentElement.dataset.cardId);
@@ -103,35 +92,17 @@ export default class GamePage extends AbstractPage{
      * @return {SVGSVGElement}
      */
     #createCard(card, row, col){
-        const rect = document.createElementNS(this.#svgNs, "rect");
-        rect.setAttributeNS(null, "x", `${col * 120}`);
-        rect.setAttributeNS(null, "y", `${row * 120}`);
-        rect.setAttributeNS(null, "width", "100");
-        rect.setAttributeNS(null, "height", "100");
-        rect.classList.add("card_rect");
+        const cardHtml = `
+        <g data-card-id="${card.id} data-removed=${card.removed}" class="card front">
+            <rect width="100" height="100" rx="10" ry="10" class="card_rect"/>
+            <text x="50" y="50" class="card_text">?</text>
+            <image width="100" height="100" href="${card.svgImgUrl}"></image>
+        </g>
+        `
+        const svg = document.createElementNS(this.#svgNs, "svg");
+        svg.addEventListener("click", this.#cardClick.bind(this), true);
+        svg.insertAdjacentHTML("afterbegin", cardHtml);
 
-        const text = document.createElementNS(this.#svgNs, "text");
-        text.setAttributeNS(null, "x", `${col * 120 + 50}`);
-        text.setAttributeNS(null, "y", `${row * 120 + 50}`);
-        //text.innerHTML = (row - 1) * 4 + col;
-        text.innerHTML = "?";
-        text.classList.add("card_text")
-
-        const img = document.createElementNS(this.#svgNs, "image");
-        img.setAttributeNS(null, "x", `${col * 120}`);
-        img.setAttributeNS(null, "y", `${row * 120}`);
-        img.setAttributeNS(null, "width", "100");
-        img.setAttributeNS(null, "height", "100");
-        img.setAttributeNS(null, "href", card.svgImgUrl);
-        img.style.display = "none";
-
-        const group = document.createElementNS(this.#svgNs, "g");
-        group.classList.add("card");
-        group.dataset.cardId = card.id;
-        group.dataset.removed = card.removed;
-        group.addEventListener("click", this.#cardClick.bind(this), true);
-        group.append(rect, text, img);
-
-        return group;
+        return svg;
     }
 }

@@ -64,7 +64,7 @@ export default class MainMenuPage extends AbstractPage{
             setTimeout(() => {
                 const gameService = new GameService(GameFactory.createGame(20));
                 const gamePage = new GamePage(gameService);
-                gamePage.render();}, 1000);
+                gamePage.render();}, 990);
         })
         return startButton;
     }

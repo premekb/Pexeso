@@ -1,0 +1,77 @@
+svg {
+    width: 100px;
+    height: 100px;
+}
+
+#outline-wrapper{
+    display:grid;
+    grid-template-columns: auto auto auto auto auto;
+    column-gap: 85px;
+    row-gap: 35px;
+    padding: 50px;
+}
+
+g.front > image {
+    display: none;
+}
+
+g.back > image {
+    display: unset;
+}
+
+g.front > rect {
+    display: unset;
+}
+
+g.back > rect {
+    display: unset;
+}
+
+image {
+    stroke: black;
+    stroke-width: 1px;
+}
+
+g:hover > image {
+    filter: brightness(0) saturate(100%) invert(91%) sepia(5%) saturate(2829%) hue-rotate(295deg) brightness(89%) contrast(96%);
+}
+
+g.removed > image {
+    filter: brightness(0) saturate(100%) invert(91%) sepia(5%) saturate(2829%) hue-rotate(295deg) brightness(89%) contrast(96%);
+}
+
+rect {
+    fill: #7D576C;
+    stroke: #302A30;
+    stroke-width: 2px;
+}
+
+.card:hover > text{
+    fill: #DFB1BB;
+    cursor: pointer;
+}
+
+.card:hover{
+    cursor: pointer;
+}
+
+#timer{
+    margin: auto;
+    font-size: 1.4em;
+}
+
+text{
+    text-anchor: middle;
+    dominant-baseline: middle;
+    fill: white;
+    font-size: 70px;
+    font-family: fantini;
+    transition: fill 150ms ease-in 10ms;
+    stroke: black;
+    stroke-width: 1px
+}
+
+#main-menu-button{
+    margin: auto;
+    margin-top: 25px;
+}

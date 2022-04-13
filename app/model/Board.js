@@ -8,7 +8,7 @@ export default class Board{
         this.#size = size;
         let imgCtr = 1;
         for (let i = 0; i < size; i += 2){
-            this.#createCardPair(i, `resources/img/card_${imgCtr}.svg`);
+            this.#createCardPair(i, `resources/img/cards/card_${imgCtr}.svg`);
             imgCtr++;
         }
     }
