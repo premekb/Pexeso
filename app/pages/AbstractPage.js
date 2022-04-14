@@ -8,21 +8,29 @@ export default class AbstractPage{
     render(){
         this.#resetBody();
         this.#replaceStyleSheet()
-       // TODO this.#renderConnectionIcon();
+        this.#handleConnectionIcon()
     }
 
-    #renderConnectionIcon(){
-        if (navigator.onLine !== undefined){
-            this.main.append(this.#createConnectionIcon());
-        }
-
+    #handleConnectionIcon(){
+        this.#renderConnectionIcon();
         window.addEventListener("online", this.#renderConnectionIcon.bind(this));
         window.addEventListener("offline", this.#renderConnectionIcon.bind(this));
     }
 
+    #renderConnectionIcon(){
+        const connectionIcon = document.querySelector("#connection-icon");
+        if (connectionIcon === null){
+            this.main.append(this.#createConnectionIcon());
+        }
+
+        else{
+            connectionIcon.replaceWith(this.#createConnectionIcon());
+        }
+    }
+
     #createConnectionIcon(){
         let connectionImg = document.createElement("img");
-        connectionImg.src = navigator.online ? "resources/img/wifi.svg" : "resources/img/no_wifi.svg";
+        connectionImg.src = navigator.onLine ? "resources/img/wifi.svg" : "resources/img/no_wifi.svg";
         connectionImg.id = "connection-icon";
         return connectionImg;
     }
