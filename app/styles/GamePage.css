@@ -226,6 +226,13 @@ g.back.out-in > text {
     }
 }
 
-@media(min-width: 700px){
+@media(min-width: 700px) and (max-width: 1070px){
+    #outline-wrapper{
+        grid-template-columns: auto auto auto auto auto;
+        column-gap: 30px;
+        row-gap: 3vw;
+        margin: 0;
+        padding: 2vw;
+    }
 
 }
