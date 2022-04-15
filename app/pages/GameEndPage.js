@@ -122,7 +122,7 @@ export default class GameEndPage extends AbstractPage{
             const response = await fetch(cityConverterUrl);
             const responseJson = await response.json();
 
-            locationInput.value = responseJson.city;
+            locationInput.value = responseJson.city.length === 0 ? responseJson.locality : responseJson.city;
         }
 
         const failure = (e) => {

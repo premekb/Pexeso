@@ -190,9 +190,7 @@ g.back.out-in > text {
     100% {transform: translateX(100px); visibility: unset}
 }
 
-/**
- * Pujdu az do 1070
- */
+
 @media(max-width: 400px) {
     #outline-wrapper{
         grid-template-columns: auto auto auto;

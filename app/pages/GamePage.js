@@ -35,6 +35,8 @@ export default class GamePage extends AbstractPage{
         nav.append(mainMenuButton);
 
         this.main.append(timerDiv, cardsDiv, nav);
+
+        new GameEndPage(10).render();
     }
 
     #createTimer(){

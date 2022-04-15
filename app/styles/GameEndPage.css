@@ -57,3 +57,26 @@ input[type="text"]:disabled{
 input[type="text"]:invalid, .failed {
     border: 1px solid red !important;
 }
+
+@media(max-width: 600px) {
+    form > div {
+        margin: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 0;
+        padding-right: 0;
+        display: block;
+    }
+
+    label {
+        display: block;
+    }
+
+    input[type="text"]{
+        width: 100%;
+    }
+
+    #outline-wrapper {
+        padding: 10px 25px 40px;
+    }
+}
