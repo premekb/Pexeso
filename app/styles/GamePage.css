@@ -180,3 +180,52 @@ g.back.out-in > text {
     0% {transform: translateX(0px); visibility: unset}
     100% {transform: translateX(100px); visibility: unset}
 }
+
+/**
+ * Pujdu az do 1070
+ */
+@media(max-width: 400px) {
+    #outline-wrapper{
+        grid-template-columns: auto auto auto;
+        column-gap: 10px;
+        row-gap: 25px;
+        margin: 0;
+        padding: 10px;
+    }
+
+    svg{
+        width: 50px;
+        height: 50px;
+    }
+
+    text {
+        font-size: 40px;
+    }
+
+    #main-menu-button{
+        margin: auto;
+        margin-top: 20px;
+    }
+}
+
+@media(min-width: 400px) and (max-width: 700px) {
+    #outline-wrapper{
+        grid-template-columns: auto auto auto auto;
+        column-gap: 30px;
+        margin: 0;
+        padding: 10px;
+    }
+
+    svg{
+        width: 12vw;
+        height: 12vw;
+    }
+
+    text {
+        font-size: 10vw;
+    }
+}
+
+@media(min-width: 700px){
+
+}

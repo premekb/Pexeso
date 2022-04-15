@@ -81,3 +81,11 @@ main {
     0% {transform: translateY(0%);}
     100% {transform: translateY(-120%);}
 }
+
+@media(max-width: 600px) {
+    #connection-icon {
+        width: 25px;
+        height: 25px;
+    }
+}
+

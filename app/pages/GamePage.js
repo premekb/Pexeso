@@ -132,9 +132,9 @@ export default class GamePage extends AbstractPage{
         const cardSideClass = this.#gameService.isThisCardSelected(card) ? "back" : "front";
         const cardHtml = `
         <g data-card-id="${card.id}" data-removed="${card.removed}" class="card ${cardSideClass} ${animationClass}">
-            <rect width="100" height="100" rx="10" ry="10" class="card_rect"/>
-            <text x="50" y="50" class="card_text">${card.id} : ${card.pairCardId}</text>
-            <image width="100" height="100" href="${card.svgImgUrl}"></image>
+            <rect width="100%" height="100%" rx="10" ry="10" class="card_rect"/>
+            <text x="50%" y="50%" class="card_text">?</text>
+            <image width="100%" height="100%" href="${card.svgImgUrl}"></image>
         </g>
         `
         const svg = document.createElementNS(this.#svgNs, "svg");

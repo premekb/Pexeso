@@ -52,3 +52,9 @@ button {
 main {
     perspective: 500px;
 }
+
+@media(max-width: 600px) {
+    button {
+        margin: 40px 40px;
+    }
+}
