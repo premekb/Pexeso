@@ -1,3 +1,12 @@
+/**
+ * The screen flashes black when rendering the svg cards. I assume it is because of the way i switch the css stylesheets.
+ * This is the easiest solution i ve managed to come up with without rewriting the css into a single file.
+ */
+.GamePage{
+    opacity: 1 !important;
+    overflow: visible !important;
+}
+
 svg {
     width: 100px;
     height: 100px;

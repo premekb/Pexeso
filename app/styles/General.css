@@ -66,6 +66,15 @@ main {
     animation-duration: 2.5s;
 }
 
+/**
+ * The screen flashes black when rendering the svg cards. I assume it is because of the way i switch the css stylesheets.
+ * This is the easiest solution i ve managed to come up with without rewriting the css into a single file.
+ */
+.GamePage{
+    opacity: 0;
+    overflow: hidden;
+}
+
 @keyframes connection-icon-appearance{
     0%{opacity: 0%}
     50%{opacity: 0%}
