@@ -12,64 +12,6 @@ svg {
     position: relative;
 }
 
-g.front > image {
-    visibility: hidden;
-}
-
-g.front.animate-card > image {
-    animation-name: image-disappears-animation;
-    animation-duration: 0.5s;
-}
-
-g.front > text {
-    display: unset;
-}
-
-g.front.animate-card > text {
-    animation-name: text-appears-animation;
-    animation-duration: 0.5s;
-}
-
-
-g.back > image {
-    display: unset;
-}
-
-g.back.animate-card > image {
-    animation-name: image-appears-animation;
-    animation-duration: 0.5s;
-}
-
-
-g.back > text {
-    visibility: hidden;
-}
-
-g.back.animate-card > text {
-    animation-name: text-disappears-animation;
-    animation-duration: 0.5s;
-}
-
-@keyframes image-disappears-animation {
-    0% {transform: translateX(0px); visibility: unset}
-    100% {transform: translateX(-100px); visibility: unset}
-}
-
-@keyframes text-appears-animation {
-    0% {transform: translateX(100px); visibility: unset}
-    100% {transform: translateX(0px); visibility: unset}
-}
-
-@keyframes image-appears-animation {
-    0% {transform: translateX(-100px)}
-    100% {transform: translateX(0px)}
-}
-
-@keyframes text-disappears-animation {
-    0% {transform: translateX(0px); visibility: unset}
-    100% {transform: translateX(100px); visibility: unset}
-}
-
 image {
     stroke: black;
     stroke-width: 1px;
@@ -138,4 +80,103 @@ text{
 
 @keyframes plus-seconds-animation {
     100% {transform: translateY(-50vh); opacity: 0}
+}
+
+
+/*
+Cards animations
+ */
+
+g.front > image {
+    visibility: hidden;
+}
+
+g.front.out-in > image {
+    animation-name: image-disappears-animation;
+    animation-duration: 0.75s;
+    animation-timing-function: ease-out;
+}
+
+.out-in-out > image {
+    animation-name: image-appears-and-disappears-animation;
+    animation-duration: 0.75s;
+    animation-timing-function: ease-out;
+}
+
+.out-in-out > text {
+    animation-name: text-appears-and-disappears-animation;
+    animation-duration: 0.75s;
+    animation-timing-function: ease-out;
+}
+
+g.front > text {
+    display: unset;
+}
+
+g.front.out-in > text {
+    animation-name: text-appears-animation;
+    animation-duration: 0.75s;
+    animation-timing-function: ease-out;
+}
+
+
+g.back > image {
+    display: unset;
+}
+
+g.back.out-in > image {
+    animation-name: image-appears-animation;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+}
+
+
+g.back > text {
+    visibility: hidden;
+}
+
+g.back.out-in > text {
+    animation-name: text-disappears-animation;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+}
+
+.removed > image {
+    animation-name: image-appears-animation;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes text-appears-and-disappears-animation{
+    0% {transform: translateX(0px); visibility: unset}
+    50% {transform: translateX(100px); visibility: unset}
+    100% {transform: translateX(0px); visibility: unset}
+}
+
+@keyframes image-appears-and-disappears-animation{
+    0% {transform: translateX(-100px); visibility: unset}
+    50% {transform: translateX(0px); visibility: unset}
+    100% {transform: translateX(-100px); visibility: unset}
+}
+
+@keyframes image-disappears-animation {
+    0% {transform: translateX(0px); visibility: unset}
+    50% {transform: translateX(0px); visibility: unset}
+    100% {transform: translateX(-100px); visibility: unset}
+}
+
+@keyframes text-appears-animation {
+    0% {transform: translateX(100px); visibility: unset}
+    50% {transform: translateX(100px); visibility: unset}
+    100% {transform: translateX(0px); visibility: unset}
+}
+
+@keyframes image-appears-animation {
+    0% {transform: translateX(-100px)}
+    100% {transform: translateX(0px)}
+}
+
+@keyframes text-disappears-animation {
+    0% {transform: translateX(0px); visibility: unset}
+    100% {transform: translateX(100px); visibility: unset}
 }

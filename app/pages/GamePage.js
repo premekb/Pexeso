@@ -8,7 +8,14 @@ export default class GamePage extends AbstractPage{
     #clickSound = new Audio("resources/sound/card_flip.wav");
     #matchSound = new Audio("resources/sound/ding.wav");
     #svgNs = "http://www.w3.org/2000/svg";
+
     static URL_NAME = "game";
+
+    static OUT_OR_IN_ANIMATION = "out-in";
+
+    static OUT_IN_OUT_ANIMATION = "out-in-out";
+
+    static REMOVED_ANIMATION = "removed";
 
     constructor(gameService) {
         super();
@@ -109,12 +116,12 @@ export default class GamePage extends AbstractPage{
      * @return {SVGSVGElement}
      */
     #createCard(card, row, col){
-        let shouldAnimate = this.#shouldAnimate(card);
+        const animationClass = this.#shouldAnimate(card) ? this.#getAnimationClass(card) : "";
         const cardSideClass = this.#gameService.isThisCardSelected(card) ? "back" : "front";
         const cardHtml = `
-        <g data-card-id="${card.id}" data-removed="${card.removed}" class="card ${cardSideClass} ${shouldAnimate ? "animate-card" : ""}">
+        <g data-card-id="${card.id}" data-removed="${card.removed}" class="card ${cardSideClass} ${animationClass}">
             <rect width="100" height="100" rx="10" ry="10" class="card_rect"/>
-            <text x="50" y="50" class="card_text">${card.id} : ${card.pairCardId }</text>
+            <text x="50" y="50" class="card_text">${card.id} : ${card.pairCardId}</text>
             <image width="100" height="100" href="${card.svgImgUrl}"></image>
         </g>
         `
@@ -128,5 +135,20 @@ export default class GamePage extends AbstractPage{
     #shouldAnimate(card){
         if (!this.#gameService.isCardSelected()) return this.#lastClickedCards.wasClicked(card)
         else return this.#lastClickedCards.wasClickedOneTurnAgo(card);
+    }
+
+    #getAnimationClass(card){
+        if (card.removed){
+            if (this.#lastClickedCards.wasClickedTwoTurnsAgo(card)) return "";
+            else{
+                console.log(card);
+                return GamePage.REMOVED_ANIMATION;
+            }
+        }
+
+        if (!this.#gameService.isCardSelected() && this.#lastClickedCards.wasClickedOneTurnAgo(card)) {
+            return GamePage.OUT_IN_OUT_ANIMATION;
+        }
+        else {return GamePage.OUT_OR_IN_ANIMATION;}
     }
 }
