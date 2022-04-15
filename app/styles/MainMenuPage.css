@@ -34,8 +34,8 @@ button {
 
 @keyframes spin-header-animation {
     0% {transform: rotateY(0deg);}
-    50% {transform: rotateY(180deg);}
-    100% {transform: rotateY(360deg);}
+    50% {transform: rotateY(180deg) rotateZ(180deg);}
+    100% {transform: rotateY(360deg) rotateZ(360deg);}
 }
 
 @keyframes click-me-animation {
@@ -47,4 +47,8 @@ button {
 #outline-wrapper {
     padding: 10px 20px 40px;
     position: relative;
+}
+
+main {
+    perspective: 500px;
 }

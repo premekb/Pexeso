@@ -1,8 +1,10 @@
 import AbstractPage from "./AbstractPage.js";
 import GameEndPage from "./GameEndPage.js";
+import ClickedCardsContainer from "../util/ClickedCardsContainer.js";
 
 export default class GamePage extends AbstractPage{
     #gameService;
+    #lastClickedCards; // util/ClickedCardsContainer
     #clickSound = new Audio("resources/sound/card_flip.wav");
     #matchSound = new Audio("resources/sound/ding.wav");
     #svgNs = "http://www.w3.org/2000/svg";
@@ -11,6 +13,7 @@ export default class GamePage extends AbstractPage{
     constructor(gameService) {
         super();
         this.#gameService = gameService;
+        this.#lastClickedCards = new ClickedCardsContainer();
         // TODO history.pushState(GamePage.URL_NAME, "", GamePage.URL_NAME);
     }
 
@@ -61,6 +64,7 @@ export default class GamePage extends AbstractPage{
     #cardClick(e){
         const clickedCardId = parseInt(e.target.parentElement.dataset.cardId);
         const clickedCard = this.#gameService.findCardById(clickedCardId);
+        this.#lastClickedCards.addCard(clickedCard);
         this.#gameService.selectCard(clickedCard);
         this.#playSound(clickedCard);
 
@@ -105,11 +109,12 @@ export default class GamePage extends AbstractPage{
      * @return {SVGSVGElement}
      */
     #createCard(card, row, col){
+        let shouldAnimate = this.#shouldAnimate(card);
         const cardSideClass = this.#gameService.isThisCardSelected(card) ? "back" : "front";
         const cardHtml = `
-        <g data-card-id="${card.id}" data-removed="${card.removed}" class="card ${cardSideClass}">
+        <g data-card-id="${card.id}" data-removed="${card.removed}" class="card ${cardSideClass} ${shouldAnimate ? "animate-card" : ""}">
             <rect width="100" height="100" rx="10" ry="10" class="card_rect"/>
-            <text x="50" y="50" class="card_text">${card.id} : ${card.pairCardId}</text>
+            <text x="50" y="50" class="card_text">${card.id} : ${card.pairCardId }</text>
             <image width="100" height="100" href="${card.svgImgUrl}"></image>
         </g>
         `
@@ -118,5 +123,10 @@ export default class GamePage extends AbstractPage{
         svg.insertAdjacentHTML("afterbegin", cardHtml);
 
         return svg;
+    }
+
+    #shouldAnimate(card){
+        if (!this.#gameService.isCardSelected()) return this.#lastClickedCards.wasClicked(card)
+        else return this.#lastClickedCards.wasClickedOneTurnAgo(card);
     }
 }
