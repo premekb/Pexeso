@@ -29,9 +29,12 @@ export default class GamePage extends AbstractPage{
 
         const timerDiv = this.#createTimer();
         const cardsDiv = this.#createCards();
-        const mainMenuButton = this.createMainMenuButton();
 
-        this.main.append(timerDiv, cardsDiv, mainMenuButton);
+        const nav = document.createElement("nav");
+        const mainMenuButton = this.createMainMenuButton();
+        nav.append(mainMenuButton);
+
+        this.main.append(timerDiv, cardsDiv, nav);
     }
 
     #createTimer(){
@@ -47,7 +50,7 @@ export default class GamePage extends AbstractPage{
         const minutes = Math.floor(totalSeconds / 60);
         const seconds = totalSeconds - minutes * 60;
 
-        timer.innerText = `Time: ${minutes} : ${seconds}`;
+        timer.innerHTML = `Time: <time>${minutes} : ${seconds}</time>`;
     }
 
     #createCards(){

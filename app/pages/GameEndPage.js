@@ -106,7 +106,7 @@ export default class GameEndPage extends AbstractPage{
 
     #createHeader(){
         const header = document.createElement("h1");
-        header.innerHTML = `Congratulations, your time is: <span id="time">${this.#time}</span>`;
+        header.innerHTML = `Congratulations, your time is: <time id="time">${this.#time}</time>`;
 
         return header;
     }

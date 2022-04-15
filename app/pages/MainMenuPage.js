@@ -16,11 +16,15 @@ export default class MainMenuPage extends AbstractPage{
     render() {
         super.render();
         const header = this.#getHeader();
+
+        const nav = document.createElement("nav");
         const startButton = this.#getStartButton()
         const highScoreButton = this.#getHighScoreButton();
+        nav.append(startButton, highScoreButton);
+
         const divWrapper = this.createDivWrapper();
         const clickMeSpan = this.#getClickMeSpan()
-        divWrapper.append(header, startButton, highScoreButton, clickMeSpan);
+        divWrapper.append(header, nav, clickMeSpan);
 
         this.main.append(divWrapper);
     }

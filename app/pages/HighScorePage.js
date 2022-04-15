@@ -17,22 +17,13 @@ export default class HighScorePage extends AbstractPage{
     render() {
         super.render();
 
-       /** if (this.#results == null){
-            const paragraph = document.createElement("paragraph");
-            paragraph.innerText = "No results available at the moment.";
-            this.main.append(paragraph);
-        }
-        else{
-            const tableElement = this.#createTable();
-            this.main.append(tableElement);
-        }*/
-
         const tableElement = this.#createTable();
-        this.main.append(tableElement);
 
+        const nav = document.createElement("nav");
         const mainMenuButton = this.createMainMenuButton();
+        nav.append(mainMenuButton);
 
-        this.main.append(mainMenuButton);
+        this.main.append(tableElement, nav);
     }
 
     #createTable(){
@@ -91,9 +82,9 @@ export default class HighScorePage extends AbstractPage{
 
         const cellsHtml = `
             <td>${gameResult.playerName}</td>
-            <td>${gameResult.time}</td>
+            <td><time>${gameResult.time}</time></td>
             <td>${gameResult.message}</td>
-            <td>${gameResult.timeSaved.toString()}</td>
+            <td><time>${gameResult.timeSaved.toString()}</time></td>
         `
         tableRow.insertAdjacentHTML("afterbegin", cellsHtml);
 
