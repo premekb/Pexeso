@@ -3,6 +3,7 @@ import GamePage from "./GamePage.js";
 import GameFactory from "../factory/GameFactory.js";
 import GameService from "../service/GameService.js";
 import HighScorePage from "./HighScorePage.js";
+import Config from "../config/Config.js";
 
 export default class MainMenuPage extends AbstractPage{
     static URL_NAME = "mainmenu";
@@ -62,7 +63,7 @@ export default class MainMenuPage extends AbstractPage{
         startButton.addEventListener("click",(e) => {
             this.main.classList.add("main-disappearance");
             setTimeout(() => {
-                const gameService = new GameService(GameFactory.createGame(20));
+                const gameService = new GameService(GameFactory.createGame(Config.CARDS_IN_GAME));
                 const gamePage = new GamePage(gameService);
                 gamePage.render();}, 990);
         })

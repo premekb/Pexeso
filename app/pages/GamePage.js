@@ -71,6 +71,8 @@ export default class GamePage extends AbstractPage{
     #cardClick(e){
         const clickedCardId = parseInt(e.target.parentElement.dataset.cardId);
         const clickedCard = this.#gameService.findCardById(clickedCardId);
+        if (!this.#shouldHandleCard(clickedCard)) return;
+
         this.#lastClickedCards.addCard(clickedCard);
         this.#gameService.selectCard(clickedCard);
         this.#playSound(clickedCard);
@@ -88,6 +90,13 @@ export default class GamePage extends AbstractPage{
             const cardDiv = document.querySelector("#outline-wrapper");
             this.main.replaceChild(this.#createCards(), cardDiv);
         }
+    }
+
+    #shouldHandleCard(card){
+        const sameCardClicked = (this.#lastClickedCards.wasClickedOneTurnAgo(card) && this.#gameService.isCardSelected());
+        const removedCardClicked = card.removed;
+
+        return !(sameCardClicked || removedCardClicked);
     }
 
     #animatePlusSeconds(){

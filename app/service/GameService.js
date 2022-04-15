@@ -21,8 +21,8 @@ export default class GameService{
     selectCard(card){
         if (this.isCardSelected()){
             if (this.#game.selectedCard.id === card.id){
-                console.log("Card unselected.");
-                this.#wasMistake = false;
+                console.log("Same card clicked.");
+                return;
             }
 
             else if (this.#game.selectedCard.pairCardId === card.id) {
