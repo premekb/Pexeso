@@ -22,7 +22,7 @@ export default class GameResultService{
                 return b.time - a.time;
             })
 
-            if (results[0] > gameResult) {
+            if (results[0].time > gameResult.time) {
                 results[0] = gameResult;
             }
         }
