@@ -59,6 +59,28 @@ input[type="file"]{
     display: none;
 }
 
+#canvas-div{
+    margin: auto;
+    width: fit-content;
+    /* To adjust the height as well */
+    height: fit-content;
+}
+
+#canvas-span{
+    display: inline-block;
+    transform: translateY(2px);
+}
+
+#custom-image-button{
+    margin-bottom: 20px;
+}
+
+canvas{
+    float: left;
+    padding-right: 15px;
+}
+
+
 
 @media(max-width: 600px) {
     button {

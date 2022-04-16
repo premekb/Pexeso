@@ -6,6 +6,7 @@ import HighScorePage from "./HighScorePage.js";
 import Config from "../config/Config.js";
 import HistoryHandler from "../service/other/HistoryHandler.js";
 import FileHandler from "../service/other/FileHandler.js";
+import CanvasHelper from "../util/CanvasHelper.js";
 
 export default class MainMenuPage extends AbstractPage{
     static HISTORY_STATE = "mainmenu";
@@ -26,14 +27,39 @@ export default class MainMenuPage extends AbstractPage{
         const highScoreButton = this.#getHighScoreButton();
         const customImageInput = this.#getCustomImageInput();
         const customImageButton = this.#getCustomImageButton(customImageInput);
+        const canvasCheckbox = this.#getCanvasCheckbox();
 
-        nav.append(startButton, highScoreButton, customImageButton);
+        nav.append(startButton, highScoreButton, customImageButton, canvasCheckbox);
 
         const divWrapper = this.createDivWrapper();
         const clickMeSpan = this.#getClickMeSpan()
-        divWrapper.append(header, nav, customImageInput, clickMeSpan);
+        divWrapper.append(header, nav, customImageInput,clickMeSpan);
 
         this.main.append(divWrapper);
+    }
+
+    #getCanvasCheckbox(){
+        const div = document.createElement("div");
+        div.id = "canvas-div";
+        const textSpan = document.createElement("span");
+        textSpan.id = "canvas-span";
+        const canvas = document.createElement("canvas");
+        canvas.width = 25;
+        canvas.height = 25;
+
+        if (FileHandler.isImageSaved()) {
+            textSpan.innerText = "Image added";
+            CanvasHelper.drawImageAdded(canvas);
+        }
+
+        else {
+            textSpan.innerText = "No image";
+            CanvasHelper.drawNoImage(canvas);
+        }
+
+        div.append(canvas, textSpan);
+
+        return div;
     }
 
     #getCustomImageButton(customImageInput){
@@ -51,6 +77,9 @@ export default class MainMenuPage extends AbstractPage{
         customImageInput.id = "custom-image-input";
         customImageInput.type = "file";
         customImageInput.addEventListener("change", new FileHandler());
+        document.addEventListener("addimage", () => {
+            document.querySelector("#canvas-div").replaceWith(this.#getCanvasCheckbox());
+        })
         return customImageInput;
     }
 

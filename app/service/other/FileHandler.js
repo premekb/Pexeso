@@ -2,7 +2,7 @@ import LocalStorageKeys from "../../util/LocalStorageKeys.js";
 
 export default class FileHandler{
     static isImageSaved(){
-        return window.localStorage.getItem(LocalStorageKeys.CUSTOM_IMAGE_KEY) !== undefined;
+        return window.localStorage.getItem(LocalStorageKeys.CUSTOM_IMAGE_KEY) !== null;
     }
 
     static getImage(){
@@ -18,6 +18,8 @@ export default class FileHandler{
         const url = URL.createObjectURL(file);
         const serialized = await this.serializeImage(file);
         window.localStorage.setItem(LocalStorageKeys.CUSTOM_IMAGE_KEY, JSON.stringify(serialized));
+        const event = new Event("addimage");
+        document.dispatchEvent(event);
     }
 
     validateFile(file){
