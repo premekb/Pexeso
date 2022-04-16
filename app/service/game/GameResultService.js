@@ -1,4 +1,4 @@
-import LocalStorageKeys from "../util/LocalStorageKeys.js";
+import LocalStorageKeys from "../../util/LocalStorageKeys.js";
 
 export default class GameResultService{
 

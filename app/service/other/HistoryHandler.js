@@ -1,10 +1,10 @@
-import GameEndPage from "../pages/GameEndPage.js";
-import GamePage from "../pages/GamePage.js";
-import GameService from "../service/GameService.js";
-import GameFactory from "../factory/GameFactory.js";
-import Config from "../config/Config.js";
-import MainMenuPage from "../pages/MainMenuPage.js";
-import HighScorePage from "../pages/HighScorePage.js";
+import GameEndPage from "../../pages/GameEndPage.js";
+import GamePage from "../../pages/GamePage.js";
+import GameService from "../game/GameService.js";
+import GameFactory from "../../factory/GameFactory.js";
+import Config from "../../config/Config.js";
+import MainMenuPage from "../../pages/MainMenuPage.js";
+import HighScorePage from "../../pages/HighScorePage.js";
 
 export default class HistoryHandler{
     static PAGE_PARAMETER = "page";

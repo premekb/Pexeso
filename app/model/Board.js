@@ -1,4 +1,5 @@
 import Card from "./Card.js"
+import FileHandler from "../service/other/FileHandler.js";
 
 export default class Board{
     #size;
@@ -8,7 +9,13 @@ export default class Board{
         this.#size = size;
         let imgCtr = 1;
         for (let i = 0; i < size; i += 2){
-            this.#createCardPair(i, `resources/img/cards/card_${imgCtr}.svg`);
+            if (i === 0 && FileHandler.isImageSaved()){
+                this.#createCardPair(i, FileHandler.getImage());
+            }
+
+            else{
+                this.#createCardPair(i, `resources/img/cards/card_${imgCtr}.svg`);
+            }
             imgCtr++;
         }
     }

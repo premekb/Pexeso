@@ -5,7 +5,7 @@
     border-radius: 10px;
     border: 1px solid black;
     font-size: 50px;
-    padding: 5px 40px;
+    padding: 5px 50px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 75px;
@@ -13,7 +13,9 @@
 }
 
 button {
+    padding: 5px 40px;
     margin: 40px 125px;
+    min-width: 220px;
 }
 
 #click-me {
@@ -53,8 +55,15 @@ main {
     perspective: 500px;
 }
 
+input[type="file"]{
+    display: none;
+}
+
+
 @media(max-width: 600px) {
     button {
         margin: 40px 40px;
+        min-width: 190px;
+        padding: 5px 25px;
     }
 }

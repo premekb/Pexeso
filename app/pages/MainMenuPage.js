@@ -1,10 +1,11 @@
 import AbstractPage from "./AbstractPage.js";
 import GamePage from "./GamePage.js";
 import GameFactory from "../factory/GameFactory.js";
-import GameService from "../service/GameService.js";
+import GameService from "../service/game/GameService.js";
 import HighScorePage from "./HighScorePage.js";
 import Config from "../config/Config.js";
-import HistoryHandler from "../util/HistoryHandler.js";
+import HistoryHandler from "../service/other/HistoryHandler.js";
+import FileHandler from "../service/other/FileHandler.js";
 
 export default class MainMenuPage extends AbstractPage{
     static HISTORY_STATE = "mainmenu";
@@ -23,13 +24,34 @@ export default class MainMenuPage extends AbstractPage{
         const nav = document.createElement("nav");
         const startButton = this.#getStartButton()
         const highScoreButton = this.#getHighScoreButton();
-        nav.append(startButton, highScoreButton);
+        const customImageInput = this.#getCustomImageInput();
+        const customImageButton = this.#getCustomImageButton(customImageInput);
+
+        nav.append(startButton, highScoreButton, customImageButton);
 
         const divWrapper = this.createDivWrapper();
         const clickMeSpan = this.#getClickMeSpan()
-        divWrapper.append(header, nav, clickMeSpan);
+        divWrapper.append(header, nav, customImageInput, clickMeSpan);
 
         this.main.append(divWrapper);
+    }
+
+    #getCustomImageButton(customImageInput){
+        const customImageButton = document.createElement("button");
+        customImageButton.innerText = "Custom image";
+        customImageButton.id = "custom-image-button";
+        customImageButton.addEventListener("click", () => {
+            customImageInput.click();
+        })
+        return customImageButton;
+    }
+
+    #getCustomImageInput(){
+        const customImageInput = document.createElement("input");
+        customImageInput.id = "custom-image-input";
+        customImageInput.type = "file";
+        customImageInput.addEventListener("change", new FileHandler());
+        return customImageInput;
     }
 
     #getClickMeSpan(){

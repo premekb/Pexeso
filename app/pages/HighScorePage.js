@@ -1,7 +1,7 @@
 import AbstractPage from "./AbstractPage.js";
-import GameResultService from "../service/GameResultService.js";
+import GameResultService from "../service/game/GameResultService.js";
 import MainMenuPage from "./MainMenuPage.js";
-import HistoryHandler from "../util/HistoryHandler.js";
+import HistoryHandler from "../service/other/HistoryHandler.js";
 import TimeConverter from "../util/TimeConverter.js";
 
 export default class HighScorePage extends AbstractPage{

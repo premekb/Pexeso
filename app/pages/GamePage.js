@@ -1,7 +1,7 @@
 import AbstractPage from "./AbstractPage.js";
 import GameEndPage from "./GameEndPage.js";
 import ClickedCardsContainer from "../util/ClickedCardsContainer.js";
-import HistoryHandler from "../util/HistoryHandler.js";
+import HistoryHandler from "../service/other/HistoryHandler.js";
 import TimeConverter from "../util/TimeConverter.js";
 
 export default class GamePage extends AbstractPage{

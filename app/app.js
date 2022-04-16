@@ -1,5 +1,5 @@
 import MainMenuPage from "./pages/MainMenuPage.js";
-import HistoryHandler from "./util/HistoryHandler.js";
+import HistoryHandler from "./service/other/HistoryHandler.js";
 
 export default class App{
     init(){
