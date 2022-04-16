@@ -42,7 +42,9 @@ export default class GameEndPage extends AbstractPage{
         const gameResult = new GameResult(this.#time, name, message, new Date());
         this.#gameResultService.saveToLocalStorage(gameResult);
 
-        (new MainMenuPage()).render();
+        this.main.classList.add("main-disappearance");
+        setTimeout(() => {new MainMenuPage().render()}, 990);
+
     }
 
     #validateForm(form){
