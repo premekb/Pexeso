@@ -3,6 +3,7 @@ import MainMenuPage from "./MainMenuPage.js";
 import GameResult from "../model/GameResult.js";
 import GameResultService from "../service/GameResultService.js";
 import HistoryHandler from "../util/HistoryHandler.js";
+import TimeConverter from "../util/TimeConverter.js";
 
 export default class GameEndPage extends AbstractPage{
     #time;
@@ -89,7 +90,7 @@ export default class GameEndPage extends AbstractPage{
         
         <div>
             <label for="location">Location</label>
-            <input type="text" placeholder="Will get filled in automatically." id="location" disabled>
+            <input type="text" placeholder="Wait please, will get filled in." id="location" disabled>
         </div>
         
         <input type="hidden" value="${this.#time}">
@@ -105,7 +106,7 @@ export default class GameEndPage extends AbstractPage{
 
     #createHeader(){
         const header = document.createElement("h1");
-        header.innerHTML = `Congratulations, your time is: <time id="time">${this.#time}</time>`;
+        header.innerHTML = `Congratulations, your time is: <time id="time">${TimeConverter.secondsToMinutesAndSecondsString(this.#time)}</time>`;
 
         return header;
     }

@@ -2,6 +2,7 @@ import AbstractPage from "./AbstractPage.js";
 import GameEndPage from "./GameEndPage.js";
 import ClickedCardsContainer from "../util/ClickedCardsContainer.js";
 import HistoryHandler from "../util/HistoryHandler.js";
+import TimeConverter from "../util/TimeConverter.js";
 
 export default class GamePage extends AbstractPage{
     #gameService;
@@ -50,10 +51,8 @@ export default class GamePage extends AbstractPage{
 
     #refreshTimer(timer){
         const totalSeconds = this.#gameService.timeWithMistakes;
-        const minutes = Math.floor(totalSeconds / 60);
-        const seconds = totalSeconds - minutes * 60;
 
-        timer.innerHTML = `Time: <time>${minutes} : ${seconds}</time>`;
+        timer.innerHTML = `Time: <time>${TimeConverter.secondsToMinutesAndSecondsString(totalSeconds)}</time>`;
     }
 
     #createCards(){

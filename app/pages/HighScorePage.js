@@ -2,6 +2,7 @@ import AbstractPage from "./AbstractPage.js";
 import GameResultService from "../service/GameResultService.js";
 import MainMenuPage from "./MainMenuPage.js";
 import HistoryHandler from "../util/HistoryHandler.js";
+import TimeConverter from "../util/TimeConverter.js";
 
 export default class HighScorePage extends AbstractPage{
     #gameResultService;
@@ -11,7 +12,9 @@ export default class HighScorePage extends AbstractPage{
     constructor(pushState) {
         super();
         this.#gameResultService = new GameResultService();
-        this.#results = this.#gameResultService.results == null ? [] : this.#gameResultService.results ;
+        this.#results = this.#gameResultService.results == null ? [] : this.#gameResultService.results;
+        this.#results.sort((a, b) => { return a.time - b.time});
+
         if (pushState === undefined || pushState){
             HistoryHandler.pushState(HighScorePage.HISTORY_STATE);
         }
@@ -85,7 +88,7 @@ export default class HighScorePage extends AbstractPage{
 
         const cellsHtml = `
             <td>${gameResult.playerName}</td>
-            <td><time>${gameResult.time}</time></td>
+            <td><time>${TimeConverter.secondsToMinutesAndSecondsString(gameResult.time)}</time></td>
             <td>${gameResult.message}</td>
             <td><time>${gameResult.timeSaved.toString()}</time></td>
         `
