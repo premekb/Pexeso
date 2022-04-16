@@ -87,14 +87,13 @@ export default class GamePage extends AbstractPage{
             this.#animatePlusSeconds();
         }
 
+        const cardDiv = document.querySelector("#outline-wrapper");
+        this.main.replaceChild(this.#createCards(), cardDiv);
+
         if (this.#gameService.isGameOver()){
             const gameEndPage = new GameEndPage(this.#gameService.endTimeWithMistakes);
-            gameEndPage.render();
-        }
-
-        else{
-            const cardDiv = document.querySelector("#outline-wrapper");
-            this.main.replaceChild(this.#createCards(), cardDiv);
+            this.main.classList.add("main-disappearance");
+            setTimeout(() => {gameEndPage.render();}, 990);
         }
     }
 
