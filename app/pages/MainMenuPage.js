@@ -4,13 +4,16 @@ import GameFactory from "../factory/GameFactory.js";
 import GameService from "../service/GameService.js";
 import HighScorePage from "./HighScorePage.js";
 import Config from "../config/Config.js";
+import HistoryHandler from "../util/HistoryHandler.js";
 
 export default class MainMenuPage extends AbstractPage{
-    static URL_NAME = "mainmenu";
+    static HISTORY_STATE = "mainmenu";
 
-    constructor() {
+    constructor(pushState) {
         super();
-        // TODO history.pushState(MainMenuPage.URL_NAME, "", MainMenuPage.URL_NAME);
+        if (pushState === undefined || pushState){
+            HistoryHandler.pushState(MainMenuPage.HISTORY_STATE);
+        }
     }
 
     render() {

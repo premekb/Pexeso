@@ -2,16 +2,15 @@ import AbstractPage from "./AbstractPage.js";
 import MainMenuPage from "./MainMenuPage.js";
 import GameResult from "../model/GameResult.js";
 import GameResultService from "../service/GameResultService.js";
+import HistoryHandler from "../util/HistoryHandler.js";
 
 export default class GameEndPage extends AbstractPage{
     #time;
     #gameResultService = new GameResultService();
-    static URL_NAME = "gameend";
 
     constructor(time) {
         super();
         this.#time = time;
-        // TODO history.pushState(GameEndPage.URL_NAME, "", GameEndPage.URL_NAME);
     }
 
     render() {

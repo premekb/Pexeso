@@ -1,6 +1,7 @@
 import AbstractPage from "./AbstractPage.js";
 import GameEndPage from "./GameEndPage.js";
 import ClickedCardsContainer from "../util/ClickedCardsContainer.js";
+import HistoryHandler from "../util/HistoryHandler.js";
 
 export default class GamePage extends AbstractPage{
     #gameService;
@@ -9,7 +10,7 @@ export default class GamePage extends AbstractPage{
     #matchSound = new Audio("resources/sound/ding.wav");
     #svgNs = "http://www.w3.org/2000/svg";
 
-    static URL_NAME = "game";
+    static HISTORY_STATE = "game";
 
     static OUT_OR_IN_ANIMATION = "out-in";
 
@@ -17,11 +18,13 @@ export default class GamePage extends AbstractPage{
 
     static REMOVED_ANIMATION = "removed";
 
-    constructor(gameService) {
+    constructor(gameService, pushState) {
         super();
         this.#gameService = gameService;
         this.#lastClickedCards = new ClickedCardsContainer();
-        // TODO history.pushState(GamePage.URL_NAME, "", GamePage.URL_NAME);
+        if (pushState === undefined || pushState){
+            HistoryHandler.pushState(GamePage.HISTORY_STATE);
+        }
     }
 
     render() {
@@ -35,8 +38,6 @@ export default class GamePage extends AbstractPage{
         nav.append(mainMenuButton);
 
         this.main.append(timerDiv, cardsDiv, nav);
-
-        new GameEndPage(10).render();
     }
 
     #createTimer(){

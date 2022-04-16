@@ -1,17 +1,20 @@
 import AbstractPage from "./AbstractPage.js";
 import GameResultService from "../service/GameResultService.js";
 import MainMenuPage from "./MainMenuPage.js";
+import HistoryHandler from "../util/HistoryHandler.js";
 
 export default class HighScorePage extends AbstractPage{
     #gameResultService;
     #results;
-    static URL_NAME = "highscore";
+    static HISTORY_STATE = "highscore";
 
-    constructor() {
+    constructor(pushState) {
         super();
         this.#gameResultService = new GameResultService();
         this.#results = this.#gameResultService.results == null ? [] : this.#gameResultService.results ;
-        // TODO history.pushState(HighScorePage.URL_NAME, "", HighScorePage.URL_NAME);
+        if (pushState === undefined || pushState){
+            HistoryHandler.pushState(HighScorePage.HISTORY_STATE);
+        }
     }
 
     render() {
