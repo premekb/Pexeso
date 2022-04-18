@@ -2,6 +2,14 @@
  * The screen flashes black when rendering the svg cards. I assume it is because of the way i switch the css stylesheets.
  * This is the easiest solution i ve managed to come up with without rewriting the css into a single file.
  */
+
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 .GamePage{
     opacity: 1 !important;
     overflow: visible !important;
@@ -13,8 +21,12 @@ svg {
 }
 
 #outline-wrapper{
+    display:-ms-grid;
     display:grid;
+    -ms-grid-columns: auto 85px auto 85px auto 85px auto 85px auto;
     grid-template-columns: auto auto auto auto auto;
+    -webkit-column-gap: 85px;
+    -moz-column-gap: 85px;
     column-gap: 85px;
     row-gap: 35px;
     padding: 50px;
@@ -27,6 +39,7 @@ image {
 }
 
 g:hover > image {
+    -webkit-filter: brightness(0) saturate(100%) invert(91%) sepia(5%) saturate(2829%) hue-rotate(295deg) brightness(89%) contrast(96%);
     filter: brightness(0) saturate(100%) invert(91%) sepia(5%) saturate(2829%) hue-rotate(295deg) brightness(89%) contrast(96%);
 }
 
@@ -56,6 +69,8 @@ text{
     fill: white;
     font-size: 70px;
     font-family: fantini;
+    -webkit-transition: fill 150ms ease-in 10ms;
+    -o-transition: fill 150ms ease-in 10ms;
     transition: fill 150ms ease-in 10ms;
     stroke: black;
     stroke-width: 1px
@@ -74,23 +89,31 @@ text{
 .card[data-removed="true"] > image{
     display: unset;
     cursor: unset;
+    -webkit-filter: brightness(0) saturate(100%) invert(91%) sepia(5%) saturate(2829%) hue-rotate(295deg) brightness(89%) contrast(96%);
     filter: brightness(0) saturate(100%) invert(91%) sepia(5%) saturate(2829%) hue-rotate(295deg) brightness(89%) contrast(96%);
     visibility: visible;
 }
 
 .plusSeconds{
     position: fixed;
+    -webkit-animation-duration: 2s;
     animation-duration: 2s;
+    -webkit-animation-name: plus-seconds-animation;
     animation-name: plus-seconds-animation;
     bottom: 0;
     left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
     transform: translateX(-50%);
 }
 
-@keyframes plus-seconds-animation {
-    100% {transform: translateY(-50vh); opacity: 0}
+@-webkit-keyframes plus-seconds-animation {
+    100% {-webkit-transform: translateY(-50vh);transform: translateY(-50vh); opacity: 0}
 }
 
+@keyframes plus-seconds-animation {
+    100% {-webkit-transform: translateY(-50vh);transform: translateY(-50vh); opacity: 0}
+}
 
 /*
 Cards animations
@@ -101,20 +124,29 @@ g.front > image {
 }
 
 g.front.out-in > image {
+    -webkit-animation-name: image-disappears-animation;
     animation-name: image-disappears-animation;
+    -webkit-animation-duration: 0.75s;
     animation-duration: 0.75s;
+    -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
 }
 
 .out-in-out > image {
+    -webkit-animation-name: image-appears-and-disappears-animation;
     animation-name: image-appears-and-disappears-animation;
+    -webkit-animation-duration: 0.75s;
     animation-duration: 0.75s;
+    -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
 }
 
 .out-in-out > text {
+    -webkit-animation-name: text-appears-and-disappears-animation;
     animation-name: text-appears-and-disappears-animation;
+    -webkit-animation-duration: 0.75s;
     animation-duration: 0.75s;
+    -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
 }
 
@@ -123,8 +155,11 @@ g.front > text {
 }
 
 g.front.out-in > text {
+    -webkit-animation-name: text-appears-animation;
     animation-name: text-appears-animation;
+    -webkit-animation-duration: 0.75s;
     animation-duration: 0.75s;
+    -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
 }
 
@@ -134,8 +169,11 @@ g.back > image {
 }
 
 g.back.out-in > image {
+    -webkit-animation-name: image-appears-animation;
     animation-name: image-appears-animation;
+    -webkit-animation-duration: 0.5s;
     animation-duration: 0.5s;
+    -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
 }
 
@@ -145,49 +183,89 @@ g.back > text {
 }
 
 g.back.out-in > text {
+    -webkit-animation-name: text-disappears-animation;
     animation-name: text-disappears-animation;
+    -webkit-animation-duration: 0.5s;
     animation-duration: 0.5s;
+    -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
 }
 
 .removed > image {
+    -webkit-animation-name: image-appears-animation;
     animation-name: image-appears-animation;
+    -webkit-animation-duration: 0.5s;
     animation-duration: 0.5s;
+    -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
 }
 
+@-webkit-keyframes text-appears-and-disappears-animation{
+    0% {-webkit-transform: translateX(0px);transform: translateX(0px); visibility: unset}
+    50% {-webkit-transform: translateX(100px);transform: translateX(100px); visibility: unset}
+    100% {-webkit-transform: translateX(0px);transform: translateX(0px); visibility: unset}
+}
+
 @keyframes text-appears-and-disappears-animation{
-    0% {transform: translateX(0px); visibility: unset}
-    50% {transform: translateX(100px); visibility: unset}
-    100% {transform: translateX(0px); visibility: unset}
+    0% {-webkit-transform: translateX(0px);transform: translateX(0px); visibility: unset}
+    50% {-webkit-transform: translateX(100px);transform: translateX(100px); visibility: unset}
+    100% {-webkit-transform: translateX(0px);transform: translateX(0px); visibility: unset}
+}
+
+@-webkit-keyframes image-appears-and-disappears-animation{
+    0% {-webkit-transform: translateX(-100px);transform: translateX(-100px); visibility: unset}
+    50% {-webkit-transform: translateX(0px);transform: translateX(0px); visibility: unset}
+    100% {-webkit-transform: translateX(-100px);transform: translateX(-100px); visibility: unset}
 }
 
 @keyframes image-appears-and-disappears-animation{
-    0% {transform: translateX(-100px); visibility: unset}
-    50% {transform: translateX(0px); visibility: unset}
-    100% {transform: translateX(-100px); visibility: unset}
+    0% {-webkit-transform: translateX(-100px);transform: translateX(-100px); visibility: unset}
+    50% {-webkit-transform: translateX(0px);transform: translateX(0px); visibility: unset}
+    100% {-webkit-transform: translateX(-100px);transform: translateX(-100px); visibility: unset}
+}
+
+@-webkit-keyframes image-disappears-animation {
+    0% {-webkit-transform: translateX(0px);transform: translateX(0px); visibility: unset}
+    50% {-webkit-transform: translateX(0px);transform: translateX(0px); visibility: unset}
+    100% {-webkit-transform: translateX(-100px);transform: translateX(-100px); visibility: unset}
 }
 
 @keyframes image-disappears-animation {
-    0% {transform: translateX(0px); visibility: unset}
-    50% {transform: translateX(0px); visibility: unset}
-    100% {transform: translateX(-100px); visibility: unset}
+    0% {-webkit-transform: translateX(0px);transform: translateX(0px); visibility: unset}
+    50% {-webkit-transform: translateX(0px);transform: translateX(0px); visibility: unset}
+    100% {-webkit-transform: translateX(-100px);transform: translateX(-100px); visibility: unset}
+}
+
+@-webkit-keyframes text-appears-animation {
+    0% {-webkit-transform: translateX(100px);transform: translateX(100px); visibility: unset}
+    50% {-webkit-transform: translateX(100px);transform: translateX(100px); visibility: unset}
+    100% {-webkit-transform: translateX(0px);transform: translateX(0px); visibility: unset}
 }
 
 @keyframes text-appears-animation {
-    0% {transform: translateX(100px); visibility: unset}
-    50% {transform: translateX(100px); visibility: unset}
-    100% {transform: translateX(0px); visibility: unset}
+    0% {-webkit-transform: translateX(100px);transform: translateX(100px); visibility: unset}
+    50% {-webkit-transform: translateX(100px);transform: translateX(100px); visibility: unset}
+    100% {-webkit-transform: translateX(0px);transform: translateX(0px); visibility: unset}
+}
+
+@-webkit-keyframes image-appears-animation {
+    0% {-webkit-transform: translateX(-100px);transform: translateX(-100px)}
+    100% {-webkit-transform: translateX(0px);transform: translateX(0px)}
 }
 
 @keyframes image-appears-animation {
-    0% {transform: translateX(-100px)}
-    100% {transform: translateX(0px)}
+    0% {-webkit-transform: translateX(-100px);transform: translateX(-100px)}
+    100% {-webkit-transform: translateX(0px);transform: translateX(0px)}
+}
+
+@-webkit-keyframes text-disappears-animation {
+    0% {-webkit-transform: translateX(0px);transform: translateX(0px); visibility: unset}
+    100% {-webkit-transform: translateX(100px);transform: translateX(100px); visibility: unset}
 }
 
 @keyframes text-disappears-animation {
-    0% {transform: translateX(0px); visibility: unset}
-    100% {transform: translateX(100px); visibility: unset}
+    0% {-webkit-transform: translateX(0px);transform: translateX(0px); visibility: unset}
+    100% {-webkit-transform: translateX(100px);transform: translateX(100px); visibility: unset}
 }
 
 

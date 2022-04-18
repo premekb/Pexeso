@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 #time {
     color: #DFB1BB;
 }
@@ -16,6 +23,30 @@ input[type="text"]{
     border-radius: 5px;
 }
 
+input[type="text"]::-webkit-input-placeholder{
+    font-style: italic;
+    color: lightgray;
+    font-family: magic;
+}
+
+input[type="text"]::-moz-placeholder{
+    font-style: italic;
+    color: lightgray;
+    font-family: magic;
+}
+
+input[type="text"]:-ms-input-placeholder{
+    font-style: italic;
+    color: lightgray;
+    font-family: magic;
+}
+
+input[type="text"]::-ms-input-placeholder{
+    font-style: italic;
+    color: lightgray;
+    font-family: magic;
+}
+
 input[type="text"]::placeholder{
     font-style: italic;
     color: lightgray;
@@ -29,16 +60,24 @@ input[type="submit"]{
 form > div {
     margin: 10px 20px;
     padding: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
     justify-content: flex-end;
 }
 
 label {
     padding-right: 14px;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
     flex: 1;
 }
 
 label ~ input[type="text"]{
+    -webkit-box-flex: 4;
+    -ms-flex: 4;
     flex: 4;
 }
 

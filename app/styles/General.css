@@ -1,3 +1,15 @@
+/**
+ * The screen flashes black when rendering the svg cards. I assume it is because of the way i switch the css stylesheets.
+ * This is the easiest solution i ve managed to come up with without rewriting the css into a single file.
+ */
+
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 @font-face {
     font-family: 'fantini'; /*a name to be used later*/
     src: url('../resources/font/fantini.ttf'); /*URL to font*/
@@ -22,6 +34,8 @@ button, input[type="submit"] {
     padding: 5px 50px;
     font-size: 20px;
     font-family: magic;
+    -webkit-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
     transition-duration: 0.2s;
     display: block;
 }
@@ -75,20 +89,36 @@ main {
     overflow: hidden;
 }
 
+@-webkit-keyframes connection-icon-appearance{
+    0%{opacity: 0%}
+    50%{opacity: 0%}
+    100%{opacity: 100%}
+}
+
 @keyframes connection-icon-appearance{
     0%{opacity: 0%}
     50%{opacity: 0%}
     100%{opacity: 100%}
 }
 
+@-webkit-keyframes main-appearance {
+    0% {-webkit-transform: translateY(-100%);transform: translateY(-100%);}
+    100% {-webkit-transform: translateY(0%);transform: translateY(0%);}
+}
+
 @keyframes main-appearance {
-    0% {transform: translateY(-100%);}
-    100% {transform: translateY(0%);}
+    0% {-webkit-transform: translateY(-100%);transform: translateY(-100%);}
+    100% {-webkit-transform: translateY(0%);transform: translateY(0%);}
+}
+
+@-webkit-keyframes main-disappearance {
+    0% {-webkit-transform: translateY(0%);transform: translateY(0%);}
+    100% {-webkit-transform: translateY(-120%);transform: translateY(-120%);}
 }
 
 @keyframes main-disappearance {
-    0% {transform: translateY(0%);}
-    100% {transform: translateY(-120%);}
+    0% {-webkit-transform: translateY(0%);transform: translateY(0%);}
+    100% {-webkit-transform: translateY(-120%);transform: translateY(-120%);}
 }
 
 @media(max-width: 600px) {
@@ -97,4 +127,3 @@ main {
         height: 25px;
     }
 }
-

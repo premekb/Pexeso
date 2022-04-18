@@ -1,4 +1,12 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 #main-menu-header {
+    block-size: -moz-fit-content;
     block-size: fit-content;
     display: inline-block;
     background-color: #7D576C;
@@ -23,27 +31,45 @@ button {
     right: 30px;
     top: 40px;
     cursor: pointer;
+    -webkit-animation-name: click-me-animation;
     animation-name: click-me-animation;
+    -webkit-animation-duration: 2s;
     animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
 }
 
 .spin-header{
+    -webkit-perspective: 100px;
     perspective: 100px;
+    -webkit-animation-name: spin-header-animation;
     animation-name: spin-header-animation;
+    -webkit-animation-duration: 2s;
     animation-duration: 2s;
 }
 
+@-webkit-keyframes spin-header-animation {
+    0% {-webkit-transform: rotateY(0deg);transform: rotateY(0deg);}
+    50% {-webkit-transform: rotateY(180deg) rotateZ(180deg);transform: rotateY(180deg) rotateZ(180deg);}
+    100% {-webkit-transform: rotateY(360deg) rotateZ(360deg);transform: rotateY(360deg) rotateZ(360deg);}
+}
+
 @keyframes spin-header-animation {
-    0% {transform: rotateY(0deg);}
-    50% {transform: rotateY(180deg) rotateZ(180deg);}
-    100% {transform: rotateY(360deg) rotateZ(360deg);}
+    0% {-webkit-transform: rotateY(0deg);transform: rotateY(0deg);}
+    50% {-webkit-transform: rotateY(180deg) rotateZ(180deg);transform: rotateY(180deg) rotateZ(180deg);}
+    100% {-webkit-transform: rotateY(360deg) rotateZ(360deg);transform: rotateY(360deg) rotateZ(360deg);}
+}
+
+@-webkit-keyframes click-me-animation {
+    0% {-webkit-transform: scale(1);transform: scale(1); color: white}
+    50% {-webkit-transform: scale(1.5);transform: scale(1.5); color: #DFB1BB}
+    100% {-webkit-transform: scale(1);transform: scale(1); color: white}
 }
 
 @keyframes click-me-animation {
-    0% {transform: scale(1); color: white}
-    50% {transform: scale(1.5); color: #DFB1BB}
-    100% {transform: scale(1); color: white}
+    0% {-webkit-transform: scale(1);transform: scale(1); color: white}
+    50% {-webkit-transform: scale(1.5);transform: scale(1.5); color: #DFB1BB}
+    100% {-webkit-transform: scale(1);transform: scale(1); color: white}
 }
 
 #outline-wrapper {
@@ -52,6 +78,7 @@ button {
 }
 
 main {
+    -webkit-perspective: 500px;
     perspective: 500px;
 }
 
@@ -61,6 +88,7 @@ input[type="file"]{
 
 #canvas-div{
     margin: auto;
+    width: -moz-fit-content;
     width: fit-content;
     /* To adjust the height as well */
     height: fit-content;
@@ -68,6 +96,8 @@ input[type="file"]{
 
 #canvas-span{
     display: inline-block;
+    -webkit-transform: translateY(2px);
+    -ms-transform: translateY(2px);
     transform: translateY(2px);
 }
 
