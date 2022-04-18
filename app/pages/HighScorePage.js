@@ -9,6 +9,9 @@ export default class HighScorePage extends AbstractPage{
     #results;
     static HISTORY_STATE = "highscore";
 
+    /**
+     * @param pushState, bool, if true or left empty, then new state will be pushed to history
+     */
     constructor(pushState) {
         super();
         this.#gameResultService = new GameResultService();

@@ -9,6 +9,9 @@ export default class GameEndPage extends AbstractPage{
     #time;
     #gameResultService = new GameResultService();
 
+    /**
+     * @param time result of the game in seconds
+     */
     constructor(time) {
         super();
         this.#time = time;
@@ -27,11 +30,14 @@ export default class GameEndPage extends AbstractPage{
         this.#tryToInsertLocation();
     }
 
+    /**
+     * Validates the form upon submission. Saves the score if all fields are filled in correctly
+     * and the score is among top 10 scores saved.
+     */
     #handleForm(e){
         e.preventDefault();
 
         if (!this.#validateForm(e.target)){
-            alert("nope");
             return;
         }
 
@@ -47,6 +53,10 @@ export default class GameEndPage extends AbstractPage{
 
     }
 
+    /**
+     * @param form DOMElement
+     * @return {boolean} true if the form is valid
+     */
     #validateForm(form){
         const nameInput = form.querySelector("#name");
         const messageInput = form.querySelector("#message");
@@ -113,6 +123,11 @@ export default class GameEndPage extends AbstractPage{
         return header;
     }
 
+    /**
+     * Inserts the location of the user into the location txt input, if the user allows geolocation.
+     * The geo coordinates are converted through external API to the actual location of the user.
+     * Othrewise "unknown" is inserted.
+     */
     #tryToInsertLocation(){
         const success = async (position) => {
             const locationInput = document.querySelector("#location");

@@ -3,10 +3,10 @@ import BoardService from "./BoardService.js";
 export default class GameService{
     #game;
     #boardService;
-    #timeStart = new Date();
-    #timeEnd = null;
+    #timeStart = new Date(); // start of the game
+    #timeEnd = null; // end of the game
     #mistakes = 0;
-    #wasMistake = false;
+    #wasMistake = false; // was last turn a mistake? (meaning wrong cards were selected)
 
     constructor(game) {
         this.#game = game;
@@ -18,6 +18,11 @@ export default class GameService{
         return this.#boardService.cards;
     }
 
+    /**
+     * Main interface, to play the game through.
+     *
+     * @param card
+     */
     selectCard(card){
         if (this.isCardSelected()){
             if (this.#game.selectedCard.id === card.id){

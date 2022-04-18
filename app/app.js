@@ -8,6 +8,14 @@ export default class App{
         window.addEventListener("popstate", historyHandler); // TODO refresh stranky? Jak na to?
     }
 
+    /**
+     * If the page is refreshed or bookmarked, then the last page will try to be recovered
+     * based on the query parameter in the url.
+     *
+     * If the query parameter is missing, or is unknown, then mainmenu is started by default.
+     *
+     * @param historyHandler
+     */
     #startPageBasedOnUrl(historyHandler){
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);

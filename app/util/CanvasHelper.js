@@ -1,5 +1,10 @@
 export default class CanvasHelper{
 
+    /**
+     * Draw rectangle with a checkmark on the canvas.
+     *
+     * @param canvas
+     */
     static drawImageAdded(canvas){
         const ctx = canvas.getContext("2d");
         ctx.strokeStyle = "#DFB1BB";
@@ -13,6 +18,11 @@ export default class CanvasHelper{
         ctx.stroke();
     }
 
+    /**
+     * Draws image with cross on the canvas.
+     *
+     * @param canvas
+     */
     static drawNoImage(canvas){
         const ctx = canvas.getContext("2d");
         ctx.strokeStyle = "#DFB1BB";

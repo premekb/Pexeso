@@ -13,6 +13,9 @@ export default class ClickedCardsContainer{
         this.#card1 = newCard;
     }
 
+    /**
+     * @return {boolean} if card was clicked in the previous turn or the turn before
+     */
     wasClicked(card) {
         let result = false;
 

@@ -86,7 +86,6 @@ const URLS_TO_CACHE = [
     "./service/other/HistoryHandler.js",
     "./service/game/GameResultService.js",
     "./service/game/GameService.js",
-    "./service/game/CardService.js",
     "./service/game/BoardService.js",
     "./pages/GameEndPage.js",
     "./pages/HighScorePage.js",

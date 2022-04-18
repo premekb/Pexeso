@@ -17,6 +17,11 @@ export default class HistoryHandler{
     constructor() {
     }
 
+    /**
+     * Switches the page accordingly.
+     *
+     * @param e popstate event
+     */
     handleEvent(e){
         console.log(e.state);
         const uid = e.state.uid;
@@ -25,6 +30,12 @@ export default class HistoryHandler{
         setTimeout(this.switchPage.bind(this, pageName), 990);
     }
 
+    /**
+     * Starts a page based on its name. Should be used when moving through the history
+     * because the page is started in a way, that no new state is pushed.
+     *
+     * @param pageName .HISTORY_STATE property on a page
+     */
     switchPage(pageName){
         switch (pageName) {
             case GamePage.HISTORY_STATE:

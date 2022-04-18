@@ -1,5 +1,8 @@
 import LocalStorageKeys from "../../util/LocalStorageKeys.js";
 
+/**
+ * Handles loading and saving the custom image provided by a user.
+ */
 export default class FileHandler{
     static isImageSaved(){
         return window.localStorage.getItem(LocalStorageKeys.CUSTOM_IMAGE_KEY) !== null;
@@ -10,6 +13,12 @@ export default class FileHandler{
         return base64url.substring(1, base64url.length - 1);
     }
 
+    /**
+     * Tries to load the image. If the image is loaded successfully,
+     * then "addimage" event is dispatched.
+     *
+     * @param e FileInput change
+     */
     async handleEvent(e){
         const file = e.target.files[0];
 
@@ -41,6 +50,8 @@ export default class FileHandler{
     }
 
     /**
+     * Serializes the image to Base64
+     *
      * Base64 encoding copied from: https://stackoverflow.com/questions/36280818/how-to-convert-file-to-base64-in-javascript
      */
     async serializeImage(f){

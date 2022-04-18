@@ -19,6 +19,10 @@ export default class GamePage extends AbstractPage{
 
     static REMOVED_ANIMATION = "removed";
 
+    /**
+     * @param gameService
+     * @param pushState, bool, if true or left empty, then new state will be pushed to history
+     */
     constructor(gameService, pushState) {
         super();
         this.#gameService = gameService;

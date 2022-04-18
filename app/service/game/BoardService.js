@@ -5,6 +5,9 @@ export default class BoardService{
         this.#board = board;
     }
 
+    /**
+     * Randomly shuffles the card on the board
+     */
     shuffleCards(){
         const shuffledCards = this.#board.cards;
         shuffledCards.sort(() => Math.random() - 0.5);

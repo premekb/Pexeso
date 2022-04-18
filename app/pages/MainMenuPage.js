@@ -38,6 +38,11 @@ export default class MainMenuPage extends AbstractPage{
         this.main.append(divWrapper);
     }
 
+    /**
+     * Creates canvas which, says, whether the user has added a custom image or not.
+     *
+     * @return div containing canvas element
+     */
     #getCanvasCheckbox(){
         const div = document.createElement("div");
         div.id = "canvas-div";

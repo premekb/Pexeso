@@ -54,6 +54,10 @@ export default class AbstractPage{
         return mainMenuButton;
     }
 
+    /**
+     * Creates a link on the page based on its name.
+     * E.g. for class GamePage.js is created link to styles/GamePage.css
+     */
     #replaceStyleSheet(){
         let stylesheets = document.querySelectorAll("link[rel=stylesheet]");
         for (let stylesheet of stylesheets){
@@ -68,6 +72,9 @@ export default class AbstractPage{
         document.querySelector("head").append(link);
     }
 
+    /**
+     * Removes everything inside of the body tag.
+     */
     #resetBody(){
         document.querySelector("body").innerHTML = "";
         this.main = document.createElement("main");
