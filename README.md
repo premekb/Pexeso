@@ -23,9 +23,10 @@ Klasické pexeso, do kterého lze nahrát vlastní obrázek a po dohrání si ul
 - Aplikaci jde bookmarkovat a funguje navigace historie
 - Kartičky jsou v SVG. Checkmark, jestli je nahrán custom obrázek v main menu je canvas
 
-Pro vendor prefixy jsem použil tool s názvem Autoprefixer. Aplikace funguje na všech prohlížečích požadovaných v hodnotící tabulce (Chrome, Firefox, Edge, Opera). V Safari nefungujou úplně správně animace vybírání kartiček. Nepodařilo se mi ale zjistit proč.
+Pro vendor prefixy jsem použil tool s názvem **Autoprefixer**. Aplikace funguje na všech prohlížečích požadovaných v hodnotící tabulce (Chrome, Firefox, Edge, Opera). V Safari nefungujou úplně správně animace vybírání kartiček. Nepodařilo se mi ale zjistit proč.
 
 # Ostatní
 
 [Prototyp ve figmě](https://www.figma.com/file/eEnK3ei5BpRN7bN7PHDKyx/Untitled?node-id=0%3A1)
+
 [UML class diagram modelu](https://cacoo.com/diagrams/UTLZgLBSmI3VAOGb/01E75)
