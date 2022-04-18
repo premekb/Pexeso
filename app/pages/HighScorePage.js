@@ -88,7 +88,7 @@ export default class HighScorePage extends AbstractPage{
 
         const cellsHtml = `
             <td>${gameResult.playerName}</td>
-            <td><time>${TimeConverter.secondsToMinutesAndSecondsString(gameResult.time)}</time></td>
+            <td>${TimeConverter.secondsToMinutesAndSecondsString(gameResult.time)}</td>
             <td>${gameResult.message}</td>
             <td><time>${gameResult.timeSaved.toString()}</time></td>
         `

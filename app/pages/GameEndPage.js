@@ -108,7 +108,7 @@ export default class GameEndPage extends AbstractPage{
 
     #createHeader(){
         const header = document.createElement("h1");
-        header.innerHTML = `Congratulations, your time is: <time id="time">${TimeConverter.secondsToMinutesAndSecondsString(this.#time)}</time>`;
+        header.innerHTML = `Congratulations, your time is: <span id="time">${TimeConverter.secondsToMinutesAndSecondsString(this.#time)}</span>`;
 
         return header;
     }
@@ -129,7 +129,9 @@ export default class GameEndPage extends AbstractPage{
 
         const failure = (e) => {
             const locationInput = document.querySelector("#location");
-            locationInput.value = "Unknown";
+            if (locationInput !== null){
+                locationInput.value = "Unknown";
+            }
         }
 
         if (!navigator.onLine) {

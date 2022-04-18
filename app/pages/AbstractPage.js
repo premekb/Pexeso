@@ -32,6 +32,7 @@ export default class AbstractPage{
         let connectionImg = document.createElement("img");
         connectionImg.src = navigator.onLine ? "resources/img/wifi.svg" : "resources/img/no_wifi.svg";
         connectionImg.id = "connection-icon";
+        connectionImg.alt = navigator.onLine ? "Icon showing, that you are connected to the internet." : "Icon showing, that you are not connected to the internet."
         return connectionImg;
     }
 

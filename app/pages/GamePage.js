@@ -52,7 +52,7 @@ export default class GamePage extends AbstractPage{
     #refreshTimer(timer){
         const totalSeconds = this.#gameService.timeWithMistakes;
 
-        timer.innerHTML = `Time: <time>${TimeConverter.secondsToMinutesAndSecondsString(totalSeconds)}</time>`;
+        timer.innerHTML = `Time: ${TimeConverter.secondsToMinutesAndSecondsString(totalSeconds)}`;
     }
 
     #createCards(){
