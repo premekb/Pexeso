@@ -8,7 +8,7 @@ export default class App{
         const soundHandler = new SoundHandler();
         this.#startPageBasedOnUrl(historyHandler);
         this.#startMusicOnInteraction(soundHandler);
-        window.addEventListener("popstate", historyHandler); // TODO refresh stranky? Jak na to?
+        window.addEventListener("popstate", historyHandler);
         window.addEventListener("soundchanged", soundHandler);
     }
 
@@ -26,6 +26,12 @@ export default class App{
         historyHandler.switchPage(urlParams.get("page"));
     }
 
+    /**
+     * Starts playing the music only when the user clicks somewhere in the page.
+     * The reason for it is that in Chrome user interaction is required before a sound can be played.
+     *
+     * @param soundHandler
+     */
     #startMusicOnInteraction(soundHandler){
         document.body.addEventListener("click", function () {
             soundHandler.playMusic();

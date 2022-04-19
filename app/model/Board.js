@@ -22,7 +22,7 @@ export default class Board{
 
     #createCardPair(idx, imgUrl) {
         const card1 = new Card(idx, imgUrl);
-        const card2 = new Card(idx + 1, imgUrl); // TODO no content for now
+        const card2 = new Card(idx + 1, imgUrl);
         card1.pairCardId = idx + 1;
         card2.pairCardId = idx;
         this.#cards.push(card1);

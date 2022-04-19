@@ -151,14 +151,3 @@ main {
         left: 50px;
     }
 }
-
-@media(min-width: 700px) and (max-width: 900px) {
-    #sound-icon {
-        left: 15px;
-        top: 80px;
-    }
-}
-
-/**
-TODO 677 width
- */

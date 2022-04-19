@@ -33,7 +33,7 @@ export default class AbstractPage{
         soundImg.addEventListener("click", (e) => {
             const soundChanged = new Event("soundchanged");
             console.log(JSON.stringify(Config.SOUND_ALLOWED))
-            e.target.src = Config.SOUND_ALLOWED ? this.#NO_SOUND_IMAGE_SRC : this.#SOUND_IMAGE_SRC; // TODO maybe wrong
+            e.target.src = Config.SOUND_ALLOWED ? this.#NO_SOUND_IMAGE_SRC : this.#SOUND_IMAGE_SRC;
             window.dispatchEvent(soundChanged);
         })
 

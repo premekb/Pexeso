@@ -75,6 +75,10 @@ button {
     margin: auto;
 }
 
+#sound-icon {
+    visibility: hidden;
+}
+
 @media(max-width: 400px) {
     table {
         font-size: 12px;
