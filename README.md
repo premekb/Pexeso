@@ -19,7 +19,7 @@ Klasické pexeso, do kterého lze nahrát vlastní obrázek a po dohrání si ul
 - Nahrávání obrázku (FileAPI)
 - Funguje offline (Service worker) a ukazuje, jestli je připojení k internetu
 - Responsivní layout
-- Audio při obracení kartiček
+- Audio při obracení kartiček a písnička na pozadí, persistentní nastavení zvuku
 - Aplikaci jde bookmarkovat a funguje navigace historie
 - Kartičky jsou v SVG. Checkmark, jestli je nahrán custom obrázek v main menu je canvas
 
