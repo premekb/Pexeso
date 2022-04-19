@@ -30,7 +30,7 @@ button, input[type="submit"] {
     background-color: #7D576C;
     color: white;
     border-radius: 10px;
-    border: 1px inset black;
+    border: 1px solid black;
     padding: 5px 50px;
     font-size: 20px;
     font-family: magic;

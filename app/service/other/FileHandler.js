@@ -43,7 +43,7 @@ export default class FileHandler{
         }
 
         if (!file.type.includes("svg")){
-            alert("Image will not display properly upon hovering with mouse and selecting. SVG image format is recommended.");
+            alert("Image might not display properly upon hovering with mouse and selecting. SVG image format is recommended.");
         }
 
         return true;

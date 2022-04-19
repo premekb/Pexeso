@@ -107,7 +107,7 @@ export default class GameEndPage extends AbstractPage{
         
         <input type="hidden" value="${this.#time}">
         
-        <input type="submit">
+        <input type="submit" value="Submit">
         `
 
         form.insertAdjacentHTML("afterbegin", htmlForm);
