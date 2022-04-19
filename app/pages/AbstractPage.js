@@ -1,14 +1,43 @@
 import MainMenuPage from "./MainMenuPage.js";
+import Config from "../config/Config.js";
 
 export default class AbstractPage{
     main = document.querySelector("#main");
 
     #GENERAL_STYLESHEET = "General.css";
 
+    #SOUND_IMAGE_SRC = "resources/img/sound_icon.svg";
+
+    #NO_SOUND_IMAGE_SRC = "resources/img/no_sound_icon.svg";
+
     render(){
         this.#resetBody();
         this.#replaceStyleSheet()
         this.#handleConnectionIcon()
+        this.main.append(this.#createSoundIcon());
+    }
+
+    #createSoundIcon(){
+        let soundImg = document.createElement("img");
+        soundImg.id = "sound-icon";
+        if (Config.SOUND_ALLOWED){
+            soundImg.src = this.#SOUND_IMAGE_SRC;
+            soundImg.alt = "Speaker icon showing, that the sound is allowed."
+        }
+
+        else{
+            soundImg.src = this.#NO_SOUND_IMAGE_SRC
+            soundImg.alt = "Speaker icon showing, that the sound is not allowed."
+        }
+
+        soundImg.addEventListener("click", (e) => {
+            const soundChanged = new Event("soundchanged");
+            console.log(JSON.stringify(Config.SOUND_ALLOWED))
+            e.target.src = Config.SOUND_ALLOWED ? this.#NO_SOUND_IMAGE_SRC : this.#SOUND_IMAGE_SRC; // TODO maybe wrong
+            window.dispatchEvent(soundChanged);
+        })
+
+        return soundImg;
     }
 
     #handleConnectionIcon(){

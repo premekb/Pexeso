@@ -1,11 +1,15 @@
 import MainMenuPage from "./pages/MainMenuPage.js";
 import HistoryHandler from "./service/other/HistoryHandler.js";
+import SoundHandler from "./service/other/SoundHandler.js";
 
 export default class App{
     init(){
         const historyHandler = new HistoryHandler();
-        this.#startPageBasedOnUrl(historyHandler)
+        const soundHandler = new SoundHandler();
+        this.#startPageBasedOnUrl(historyHandler);
+        this.#startMusicOnInteraction(soundHandler);
         window.addEventListener("popstate", historyHandler); // TODO refresh stranky? Jak na to?
+        window.addEventListener("soundchanged", soundHandler);
     }
 
     /**
@@ -20,5 +24,11 @@ export default class App{
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         historyHandler.switchPage(urlParams.get("page"));
+    }
+
+    #startMusicOnInteraction(soundHandler){
+        document.body.addEventListener("click", function () {
+            soundHandler.playMusic();
+        }, {once: true});
     }
 }

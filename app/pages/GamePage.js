@@ -3,12 +3,12 @@ import GameEndPage from "./GameEndPage.js";
 import ClickedCardsContainer from "../util/ClickedCardsContainer.js";
 import HistoryHandler from "../service/other/HistoryHandler.js";
 import TimeConverter from "../util/TimeConverter.js";
+import SoundHandler from "../service/other/SoundHandler.js";
 
 export default class GamePage extends AbstractPage{
     #gameService;
+    #soundHandler;
     #lastClickedCards; // util/ClickedCardsContainer
-    #clickSound = new Audio("resources/sound/card_flip.wav");
-    #matchSound = new Audio("resources/sound/ding.wav");
     #svgNs = "http://www.w3.org/2000/svg";
 
     static HISTORY_STATE = "game";
@@ -26,6 +26,7 @@ export default class GamePage extends AbstractPage{
     constructor(gameService, pushState) {
         super();
         this.#gameService = gameService;
+        this.#soundHandler = new SoundHandler();
         this.#lastClickedCards = new ClickedCardsContainer();
         if (pushState === undefined || pushState){
             HistoryHandler.pushState(GamePage.HISTORY_STATE);
@@ -118,11 +119,11 @@ export default class GamePage extends AbstractPage{
 
     #playSound(clickedCard){
         if (clickedCard.removed){
-            this.#matchSound.play();
+            this.#soundHandler.playCardMatch();
         }
 
         else{
-            this.#clickSound.play();
+            this.#soundHandler.playCardClick();
         }
     }
 

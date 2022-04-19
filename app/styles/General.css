@@ -74,10 +74,27 @@ main {
     height: 50px;
     position: absolute;
     top: 1vh;
-    left: 1vw;
+    left: 15px;
     filter: invert(91%) sepia(5%) saturate(2829%) hue-rotate(295deg) brightness(89%) contrast(96%);
-    animation-name: connection-icon-appearance;
+    animation-name: icon-appearance;
     animation-duration: 2.5s;
+}
+
+#sound-icon {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 1vh;
+    left: 95px;
+    filter: invert(91%) sepia(5%) saturate(2829%) hue-rotate(295deg) brightness(89%) contrast(96%);
+    animation-name: icon-appearance;
+    animation-duration: 2.5s;
+    transition-duration: 0.5s;
+}
+
+#sound-icon:hover {
+    cursor:pointer;
+    filter: invert(91%) sepia(5%) saturate(2829%) hue-rotate(295deg) brightness(99%) contrast(96%);
 }
 
 /**
@@ -89,13 +106,13 @@ main {
     overflow: hidden;
 }
 
-@-webkit-keyframes connection-icon-appearance{
+@-webkit-keyframes icon-appearance{
     0%{opacity: 0%}
     50%{opacity: 0%}
     100%{opacity: 100%}
 }
 
-@keyframes connection-icon-appearance{
+@keyframes icon-appearance{
     0%{opacity: 0%}
     50%{opacity: 0%}
     100%{opacity: 100%}
@@ -121,9 +138,27 @@ main {
     100% {-webkit-transform: translateY(-120%);transform: translateY(-120%);}
 }
 
-@media(max-width: 600px) {
+@media(max-width: 700px) {
     #connection-icon {
         width: 25px;
         height: 25px;
+        left: 7px;
+    }
+
+    #sound-icon {
+        width: 25px;
+        height: 25px;
+        left: 50px;
     }
 }
+
+@media(min-width: 700px) and (max-width: 900px) {
+    #sound-icon {
+        left: 15px;
+        top: 80px;
+    }
+}
+
+/**
+TODO 677 width
+ */
