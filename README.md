@@ -15,6 +15,8 @@ Protože jsem s psaním aplikací v JS neměl dosud žádné zkušenosti, tak js
 
 Klasické pexeso, do kterého lze nahrát vlastní obrázek a po dohrání si uložit skóre.
 
+[Tabulka kde je to rozepsane v bodech u hodnoceni + kde se to dá najít](https://docs.google.com/spreadsheets/d/1exU0fVSzb6vLrNk4rODyH12vVuvBY6dH2-BuW5HmRp8/edit?usp=sharing)
+
 - Ukládání skóre (Geolocation API, LocalStorage API, HTML5 forms)
 - Nahrávání obrázku (FileAPI)
 - Funguje offline (Service worker) a ukazuje, jestli je připojení k internetu
